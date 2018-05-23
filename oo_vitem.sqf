@@ -32,6 +32,11 @@
 			DEBUG(#, "OO_VITEM::constructor")
 		};
 
+		PUBLIC FUNCTION("","getThis") {
+			DEBUG(#, "OO_VITEM::getThis")
+			MEMBER("this", nil);
+		};
+
 		PUBLIC FUNCTION("","getName") {
 			DEBUG(#, "OO_VITEM::getName")
 			MEMBER("name", nil);
@@ -57,7 +62,7 @@
 			MEMBER("price", nil);
 		};
 
-		PUBLIC FUNCTION("string","setPrice") {
+		PUBLIC FUNCTION("scalar","setPrice") {
 			DEBUG(#, "OO_VITEM::setPrice")
 			MEMBER("price", _this);
 		};
@@ -67,7 +72,7 @@
 			MEMBER("weight", nil);
 		};
 
-		PUBLIC FUNCTION("","setWeight") {
+		PUBLIC FUNCTION("scalar","setWeight") {
 			DEBUG(#, "OO_VITEM::setWeight")
 			MEMBER("weight", _this);
 		};
@@ -77,7 +82,7 @@
 			MEMBER("owner", nil);
 		};
 
-		PUBLIC FUNCTION("","setOwner") {
+		PUBLIC FUNCTION("scalar","setOwner") {
 			DEBUG(#, "OO_VITEM::setOwner")
 			MEMBER("owner", _this);
 		};
