@@ -24,6 +24,7 @@
 		PRIVATE VARIABLE("code","this");
 		PRIVATE VARIABLE("string","name");
 		PRIVATE VARIABLE("string","description");
+		PRIVATE VARIABLE("string","category");
 		PRIVATE VARIABLE("scalar","price");
 		PRIVATE VARIABLE("scalar","weight");
 		PRIVATE VARIABLE("scalar","owner");
@@ -87,11 +88,22 @@
 			MEMBER("owner", _this);
 		};
 
+		PUBLIC FUNCTION("","getCategory") {
+			DEBUG(#, "OO_VITEM::getCategory")
+			MEMBER("category", nil);
+		};
+
+		PUBLIC FUNCTION("string","setCategory") {
+			DEBUG(#, "OO_VITEM::setCategory")
+			MEMBER("category", _this);
+		};
+
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_VITEM::deconstructor")
 			DELETE_VARIABLE("this");
 			DELETE_VARIABLE("name");
 			DELETE_VARIABLE("description");
+			DELETE_VARIABLE("category");
 			DELETE_VARIABLE("price");
 			DELETE_VARIABLE("weight");
 			DELETE_VARIABLE("owner");
