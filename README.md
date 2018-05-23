@@ -1,2 +1,3 @@
 # oo_vitems
-Manage virtual items
+
+A OOP class to manage virtual items
