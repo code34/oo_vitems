@@ -84,11 +84,11 @@
 
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_VITEM::deconstructor")
-				DELETE_VARIABLE("this");
-				DELETE_VARIABLE("name");
-				DELETE_VARIABLE("description");
-				DELETE_VARIABLE("price");
-				DELETE_VARIABLE("weight");
-				DELETE_VARIABLE("owner");
+			DELETE_VARIABLE("this");
+			DELETE_VARIABLE("name");
+			DELETE_VARIABLE("description");
+			DELETE_VARIABLE("price");
+			DELETE_VARIABLE("weight");
+			DELETE_VARIABLE("owner");
 		};
 	ENDCLASS;
