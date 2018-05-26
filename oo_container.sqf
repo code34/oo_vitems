@@ -60,7 +60,7 @@
 			MEMBER("limitweight", _this);
 		};
 
-		PUBLIC FUNCTION("","count") {
+		PUBLIC FUNCTION("","countSize") {
 			DEBUG(#, "OO_CONTAINER::count")
 			count(MEMBER("content", nil));
 		};
@@ -69,7 +69,7 @@
 			DEBUG(#, "OO_CONTAINER::countWeight")
 			private _weight = 0;
 			{
-				_weight = _weight + "getWeight" call _x;
+				_weight = _weight + ("getWeight" call _x);
 			} forEach MEMBER("content", nil);
 			_weight;
 		};
@@ -97,7 +97,7 @@
 		PUBLIC FUNCTION("code","addItem") {
 			DEBUG(#, "OO_CONTAINER::addItem")
 			private _newweight = MEMBER("countWeight", nil) + ("getWeight" call _this);
-			if( MEMBER("count", nil) < MEMBER("limitsize", nil) && _newweight < MEMBER("limitweight", nil)) exitWith {
+			if( MEMBER("countSize", nil) < MEMBER("limitsize", nil) && _newweight < MEMBER("limitweight", nil)) exitWith {
 				MEMBER("content", nil) pushBack _this;
 				true;
 			};
