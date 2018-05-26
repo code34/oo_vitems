@@ -29,5 +29,6 @@
 	_piece = "new" call OO_ITEM;
 	["setItem", 	["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
 	_coffre = "new" call OO_CONTAINER;
+	["setContainer", 	["coffre",[],1,1]] call _coffre;
 	["addItem", _piece] call _coffre;
 	hintc format ["Nb objets: %1", "count" call _coffre];

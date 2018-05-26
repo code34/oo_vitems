@@ -24,11 +24,15 @@
 		PRIVATE VARIABLE("code","this");
 		PRIVATE VARIABLE("string","name");
 		PRIVATE VARIABLE("array","content");
+		PRIVATE VARIABLE("scalar","limitsize");
+		PRIVATE VARIABLE("scalar","limitweight");
 
 		PUBLIC FUNCTION("","constructor") { 
 			DEBUG(#, "OO_CONTAINER::constructor")
 			MEMBER("name", "");
 			MEMBER("content", []);
+			MEMBER("limitsize", 0);
+			MEMBER("limitweight", 0);
 		};
 
 		PUBLIC FUNCTION("","getThis") {
@@ -36,13 +40,68 @@
 			MEMBER("this", nil);
 		};
 
+		PUBLIC FUNCTION("","getLimitSize") {
+			DEBUG(#, "OO_CONTAINER::getLimitSize")
+			MEMBER("limitsize", nil);
+		};
+
+		PUBLIC FUNCTION("scalar","setLimitSize") {
+			DEBUG(#, "OO_CONTAINER::setLimitSize")
+			MEMBER("limitsize", _this);
+		};
+
+		PUBLIC FUNCTION("","getLimitWeight") {
+			DEBUG(#, "OO_CONTAINER::getLimitWeight")
+			MEMBER("limitweight", nil);
+		};
+
+		PUBLIC FUNCTION("scalar","setLimitWeight") {
+			DEBUG(#, "OO_CONTAINER::setLimitWeight")
+			MEMBER("limitweight", _this);
+		};
+
 		PUBLIC FUNCTION("","count") {
+			DEBUG(#, "OO_CONTAINER::count")
 			count(MEMBER("content", nil));
+		};
+
+		PUBLIC FUNCTION("","countWeight") {
+			DEBUG(#, "OO_CONTAINER::countWeight")
+			private _weight = 0;
+			{
+				_weight = _weight + "getWeight" call _x;
+			} forEach MEMBER("content", nil);
+			_weight;
+		};
+
+		PUBLIC FUNCTION("array","setContainer") {
+			DEBUG(#, "OO_CONTAINER::setContainer")
+			private _properties = ["name", "content", "limitsize", "limitweight"];
+			if(count _this < count _properties) exitWith {false;};
+			{
+				MEMBER(_x, _this select _forEachIndex);
+			} forEach _properties;
+			true;
+		};
+
+		PUBLIC FUNCTION("","getContainer") {
+			DEBUG(#, "OO_CONTAINER::getContainer")
+			private _container = [];
+			private _properties = ["name", "content", "limitsize", "limitweight"];
+			{
+				_container pushBack MEMBER(_x, nil);
+			} forEach _properties;
+			_container;
 		};
 
 		PUBLIC FUNCTION("code","addItem") {
 			DEBUG(#, "OO_CONTAINER::addItem")
-			MEMBER("content", nil) pushBack _this;
+			private _newweight = MEMBER("countWeight", nil) + ("getWeight" call _this);
+			if( MEMBER("count", nil) < MEMBER("limitsize", nil) && _newweight < MEMBER("limitweight", nil)) exitWith {
+				MEMBER("content", nil) pushBack _this;
+				true;
+			};
+			false;
 		};
 
 		PUBLIC FUNCTION("","getContent") {
@@ -60,5 +119,7 @@
 			DELETE_VARIABLE("this");
 			DELETE_VARIABLE("name");
 			DELETE_VARIABLE("content");
+			DELETE_VARIABLE("limitsize");
+			DELETE_VARIABLE("limitweight");
 		};
 	ENDCLASS;
