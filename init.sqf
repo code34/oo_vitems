@@ -28,7 +28,18 @@
 
 	_piece = "new" call OO_ITEM;
 	["setItem", 	["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
+	
 	_coffre = "new" call OO_CONTAINER;
-	["setContainer", 	["coffre",[],1,1]] call _coffre;
+	
+	// nom, limite taille, limite poid
+	["setContainer", 	["coffre",[],3,1]] call _coffre;
+	
 	["addItem", _piece] call _coffre;
-	hintc format ["Nb objets: %1", "count" call _coffre];
+	["addItem", _piece] call _coffre;
+	["addItem", _piece] call _coffre;
+
+	hint format ["Nb objets: %1", "countSize" call _coffre];
+	sleep 2;
+
+	hint format ["Content: %1", "getContent" call _coffre];
+	
