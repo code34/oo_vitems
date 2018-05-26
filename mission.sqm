@@ -8,30 +8,38 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=2;
+		nextID=5;
 	};
 	class Camera
 	{
-		pos[]={4431.7896,15,1180.3452};
-		dir[]={-0.18351717,-0.17364819,0.96755761};
-		up[]={-0.03235903,0.98480767,0.17060651};
-		aside[]={0.98248369,0,0.18634821};
+		pos[]={4433.2393,7.7470603,1199.7671};
+		dir[]={-0.36928171,-0.3381902,0.86561513};
+		up[]={-0.13270473,0.94107109,0.31106746};
+		aside[]={0.91981077,-1.4761463e-007,0.39240387};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
-	"A3_Characters_F"
+	"A3_Characters_F",
+	"A3_Props_F_Orange_Humanitarian_Supplies"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item1
+		{
+			className="A3_Props_F_Orange";
+			name="Arma 3 Orange - Decorative and Mission Objects";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -63,7 +71,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
 			dataType="Group";
@@ -92,6 +100,22 @@ class Mission
 			{
 			};
 			id=0;
+		};
+		class Item1
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4430.583,5.2069721,1205.63};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="carton";
+			};
+			id=4;
+			type="Land_PaperBox_01_small_closed_white_IDAP_F";
 		};
 	};
 };

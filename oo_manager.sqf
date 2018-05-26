@@ -33,14 +33,28 @@
 			MEMBER("this", nil);
 		};
 
-		PUBLIC FUNCTION("","thiefItem") {
-			DEBUG(#, "OO_MANAGER::giveItem")
-			//MEMBER("name", nil);
+		PUBLIC FUNCTION("array","registerContainer") {
+			DEBUG(#, "OO_MANAGER::registerContainer")
+			
 		};
 
-		PUBLIC FUNCTION("","putItem") {
+		/*
+		_source: container
+		_target: container
+		_index: index of object in container
+		*/
+		PUBLIC FUNCTION("array","moveItem") {
 			DEBUG(#, "OO_MANAGER::giveItem")
-			//MEMBER("name", nil);
+			_source = _this select 0;
+			_target = _this select 1;
+			_index = _this select 2;
+			if (typeName _source != "code" || typeName _target != "code" || _index < 0 || typeName _index != "scalar") exitWith {false;};
+			private _item = ["getItem", _index] call _source;
+			if !(["addItem", _item] call _target) exitWith {
+				["addItem", _item] call _source;
+				false;
+			};
+			true;
 		};
 
 		PUBLIC FUNCTION("","buildItem") {
@@ -59,6 +73,11 @@
 		};
 
 		PUBLIC FUNCTION("","repairItem") {
+			DEBUG(#, "OO_MANAGER::giveItem")
+			//MEMBER("name", nil);
+		};
+
+		PUBLIC FUNCTION("","thiefItem") {
 			DEBUG(#, "OO_MANAGER::giveItem")
 			//MEMBER("name", nil);
 		};

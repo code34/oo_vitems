@@ -2,8 +2,6 @@
 	Author: code34 nicolas_boiteux@yahoo.fr
 	Copyright (C) 2018 Nicolas BOITEUX
 
-	OO_ITEMS
-
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
@@ -18,28 +16,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
+	15203 cutText ["Loading...","BLACK FADED", 1000];
 	#include "oop.h"
 
+	call compile preprocessFileLineNumbers "oo_bme.sqf";
 	call compile preprocessFileLineNumbers "oo_item.sqf";
 	call compile preprocessFileLineNumbers "oo_container.sqf";
 	call compile preprocessFileLineNumbers "oo_manager.sqf";
 
-	sleep 2;
+	_bmeclient = NEW(OO_BME, nil);
+	private _result = false;
+	while { _result isEqualTo false} do { 
+		_result= ["remoteCall", ["qwenchIsAlive", "" , 2, false]] call _bmeclient;
+		sleep 0.1;
+	};
 
-	_piece = "new" call OO_ITEM;
-	["setItem", 	["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
-	
-	_coffre = "new" call OO_CONTAINER;
-	
-	// nom, limite taille, limite poid
-	["setContainer", 	["coffre",[],3,1]] call _coffre;
-	
-	["addItem", _piece] call _coffre;
-	["addItem", _piece] call _coffre;
-	["addItem", _piece] call _coffre;
-
-	hint format ["Nb objets: %1", "countSize" call _coffre];
-	sleep 2;
-
-	hint format ["Content: %1", "getContent" call _coffre];
-	
+	15203 cutText ["","PLAIN", 0];
+	_result= ["remoteCall", ["getContent", carton , 2, []]] call _bmeclient;
+	hint format ["%1", _result];

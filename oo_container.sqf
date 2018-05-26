@@ -109,6 +109,15 @@
 			MEMBER("content", nil);
 		};
 
+		PUBLIC FUNCTION("","getContentSerialize") {
+			DEBUG(#, "OO_CONTAINER::getContentSerialize")
+			private _result = [];
+			{
+				_result pushBack ("getItem" call _x);
+			} foreach MEMBER("content", nil);
+			_result;
+		};
+
 		PUBLIC FUNCTION("scalar","getItem") {
 			DEBUG(#, "OO_CONTAINER::getItem")
 			MEMBER("content", nil) deleteAt _this;
