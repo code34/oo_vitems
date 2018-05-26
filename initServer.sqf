@@ -26,23 +26,50 @@
 	sleep 1;
 
 	_inventory = "new" call OO_CONTAINER;
+	_inventory2 = "new" call OO_CONTAINER;
 	_manager = "new" call OO_MANAGER;
 
-	["setContainer", 	["coffre",[],10,10]] call _inventory;
+	["setContainer", 	["carton",[],11,11]] call _inventory;
+	["setContainer", 	["joueur",[],10,10]] call _inventory2;
 
 	_piece = "new" call OO_ITEM;
 	_bouteille = "new" call OO_ITEM;
+	_canard = "new" call OO_ITEM;
+
 	["setItem", ["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
 	["setItem", ["bouteille","une bouteille vide","objet",50,1,1,100]] call _bouteille;
+	["setItem", ["canard","un canard bien vivant à 3 pattes","animal",50,9,9,100]] call _canard;
 	
 	["addItem", _piece] call _inventory;
 	["addItem", _bouteille] call _inventory;
+	["addItem", _canard] call _inventory;
+
 	carton setVariable["inventory", _inventory];
+	player setVariable["inventory", _inventory2];
 
 	getContent = {
 		_object = _this;
 		_inventory = _object getVariable["inventory", []];
 		"getContentSerialize" call _inventory;
+	};
+
+	putItem = {
+		_object = _this select 0;
+		_serial = _this select 1;
+		_item = "new" call OO_ITEM;
+		["setItem", _serial] call _item;
+		_inventory = _object getVariable["inventory", []];
+		["addItem", _item] call _inventory;
+	};
+
+	moveItem = {
+		_manager = "new" call OO_MANAGER;
+		_source = _this select 0;
+		_target = _this select 1;
+		_index = _this select 2;
+		_source = _source getVariable["inventory", []];
+		_target = _target getVariable["inventory", []];
+		["moveItem", [_source, _target, _index]] call _manager;
 	};
 
 	qwenchIsAlive = {true;};

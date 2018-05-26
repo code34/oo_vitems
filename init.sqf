@@ -23,14 +23,22 @@
 	call compile preprocessFileLineNumbers "oo_item.sqf";
 	call compile preprocessFileLineNumbers "oo_container.sqf";
 	call compile preprocessFileLineNumbers "oo_manager.sqf";
+	call compile preprocessFileLineNumbers "oo_inventaire.sqf";
 
-	_bmeclient = NEW(OO_BME, nil);
+	bmeclient = NEW(OO_BME, nil);
 	private _result = false;
 	while { _result isEqualTo false} do { 
-		_result= ["remoteCall", ["qwenchIsAlive", "" , 2, false]] call _bmeclient;
+		_result= ["remoteCall", ["qwenchIsAlive", "" , 2, false]] call bmeclient;
 		sleep 0.1;
 	};
 
 	15203 cutText ["","PLAIN", 0];
-	_result= ["remoteCall", ["getContent", carton , 2, []]] call _bmeclient;
-	hint format ["%1", _result];
+	_patate = "new" call OO_ITEM;
+	["setItem", ["patate","une vulgaire pomme de terre abimée","aliment",5,1,1,70]] call _patate;
+	_result = ["remoteCall", ["putItem", [carton, ("getItem" call _patate)] , 2, false]] call bmeclient;
+	_result = ["remoteCall", ["moveItem", [carton, player, 3] , 2, false]] call bmeclient;
+	_result = ["remoteCall", ["getContent", carton , 2, []]] call bmeclient;
+	hint format ["Inv carton: %1", _result];
+	_result = ["remoteCall", ["getContent", player , 2, []]] call bmeclient;
+	hint format ["Inv joueur%1", _result];
+	createDialog "oo_inventaire";
