@@ -21,11 +21,13 @@
 	#include "oop.h"
 
 	call compile preprocessFileLineNumbers "oo_item.sqf";
-	call compile preprocessFileLineNumbers "oo_mngitems.sqf";
+	call compile preprocessFileLineNumbers "oo_container.sqf";
+	call compile preprocessFileLineNumbers "oo_manager.sqf";
 
 	sleep 2;
 
-	 _vitem = "new" call OO_ITEM;
-	 _mngitem = "new" call OO_MNGITEMS;
-
-	 hintc "Init ok";
+	_piece = "new" call OO_ITEM;
+	["setItem", 	["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
+	_coffre = "new" call OO_CONTAINER;
+	["addItem", _piece] call _coffre;
+	hintc format ["Nb objets: %1", "count" call _coffre];

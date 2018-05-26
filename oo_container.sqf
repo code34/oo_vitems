@@ -2,7 +2,7 @@
 	Author: code34 nicolas_boiteux@yahoo.fr
 	Copyright (C) 2018 Nicolas BOITEUX
 
-	CLASS OO_MNGITEMS
+	CLASS OO_CONTAINER
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -20,26 +20,45 @@
 
 	#include "oop.h"
 
-	CLASS("OO_MNGITEMS")
+	CLASS("OO_CONTAINER")
 		PRIVATE VARIABLE("code","this");
 		PRIVATE VARIABLE("string","name");
+		PRIVATE VARIABLE("array","content");
 
 		PUBLIC FUNCTION("","constructor") { 
-			DEBUG(#, "OO_MNGITEMS::constructor")
+			DEBUG(#, "OO_CONTAINER::constructor")
+			MEMBER("name", "");
+			MEMBER("content", []);
 		};
 
 		PUBLIC FUNCTION("","getThis") {
-			DEBUG(#, "OO_MNGITEMS::getThis")
+			DEBUG(#, "OO_CONTAINER::getThis")
 			MEMBER("this", nil);
 		};
 
-		PUBLIC FUNCTION("","getName") {
-			DEBUG(#, "OO_MNGITEMS::getName")
-			MEMBER("name", nil);
+		PUBLIC FUNCTION("","count") {
+			count(MEMBER("content", nil));
+		};
+
+		PUBLIC FUNCTION("code","addItem") {
+			DEBUG(#, "OO_CONTAINER::addItem")
+			MEMBER("content", nil) pushBack _this;
+		};
+
+		PUBLIC FUNCTION("","getContent") {
+			DEBUG(#, "OO_CONTAINER::getContent")
+			MEMBER("content", nil);
+		};
+
+		PUBLIC FUNCTION("scalar","getItem") {
+			DEBUG(#, "OO_CONTAINER::getItem")
+			MEMBER("content", nil) deleteAt _this;
 		};
 
 		PUBLIC FUNCTION("","deconstructor") {
-			DEBUG(#, "OO_MNGITEMS::deconstructor")
+			DEBUG(#, "OO_CONTAINER::deconstructor")
 			DELETE_VARIABLE("this");
+			DELETE_VARIABLE("name");
+			DELETE_VARIABLE("content");
 		};
 	ENDCLASS;

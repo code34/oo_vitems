@@ -28,14 +28,52 @@
 		PRIVATE VARIABLE("scalar","price");
 		PRIVATE VARIABLE("scalar","weight");
 		PRIVATE VARIABLE("scalar","owner");
+		PRIVATE VARIABLE("scalar","life");
 
 		PUBLIC FUNCTION("","constructor") { 
 			DEBUG(#, "OO_ITEM::constructor")
+			MEMBER("name", "");
+			MEMBER("description", "");
+			MEMBER("category", "");
+			MEMBER("price", 0);
+			MEMBER("weight", 0);
+			MEMBER("owner", 0);
+			MEMBER("life", 0);
 		};
 
 		PUBLIC FUNCTION("","getThis") {
 			DEBUG(#, "OO_ITEM::getThis")
 			MEMBER("this", nil);
+		};
+
+		PUBLIC FUNCTION("array","setItem") {
+			DEBUG(#, "OO_ITEM::setItem")
+			private _properties = ["name", "description", "category", "price","weight", "owner", "life"];
+			if(count _this < count _properties) exitWith {false;};
+			{
+				MEMBER(_x, _this select _forEachIndex);
+			} foreach _properties;
+			true;
+		};
+
+		PUBLIC FUNCTION("","getItem") {
+			DEBUG(#, "OO_ITEM::getItem")
+			private _properties = ["name", "description", "category", "price","weight", "owner", "life"];
+			private _item = [];
+			{
+				_item pushBack MEMBER(_x, nil);
+			} forEach _properties;
+			_item;
+		};
+
+		PUBLIC FUNCTION("","getLife") {
+			DEBUG(#, "OO_ITEM::getLife")
+			MEMBER("life", nil);
+		};
+
+		PUBLIC FUNCTION("","setLife") {
+			DEBUG(#, "OO_ITEM::setLife")
+			MEMBER("life", _this);
 		};
 
 		PUBLIC FUNCTION("","getName") {
@@ -107,5 +145,6 @@
 			DELETE_VARIABLE("price");
 			DELETE_VARIABLE("weight");
 			DELETE_VARIABLE("owner");
+			DELETE_VARIABLE("life");
 		};
 	ENDCLASS;
