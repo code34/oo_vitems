@@ -11,6 +11,8 @@ CLASS("oo_inventaire")
 	PRIVATE UI_VARIABLE("control", "OOP_MainLayer_100");
 	PRIVATE UI_VARIABLE("control", "OOP_SubLayer_101");
 	PRIVATE UI_VARIABLE("display", "Display");
+	PRIVATE VARIABLE("code", "source");
+	PRIVATE VARIABLE("code", "target");
 
 	PUBLIC FUNCTION("display", "constructor"){
 		disableSerialization;
@@ -27,35 +29,40 @@ CLASS("oo_inventaire")
 		SPAWN_MEMBER("Init", nil);
 	};
 	
-	PUBLIC FUNCTION("", "Init"){
-		//lbClear MEMBER("OOP_Listbox_102", nil);
-		//lbClear MEMBER("OOP_Listbox_103", nil);
-
-		_result = ["remoteCall", ["getContent", carton , 2, []]] call bmeclient;
-		{
-			MEMBER("OOP_Listbox_102", nil) lbAdd (_x select 0);
-		}forEach _result;
-		
-		_result= ["remoteCall", ["getContent", player , 2, []]] call bmeclient;
-		{
-			MEMBER("OOP_Listbox_103", nil) lbAdd (_x select 0);
-		}forEach _result;
+	PUBLIC FUNCTION("", "Init")
+	{
+		lbClear MEMBER("OOP_Listbox_102", nil);
+		lbClear MEMBER("OOP_Listbox_103", nil);
+		private _result = ["remoteCall", ["getContainer", carton , 2, []]] call bmeclient;
+		private _result2 = ["remoteCall", ["getContainer", player , 2, []]] call bmeclient;
+		private _source = "new" call OO_CONTAINER;
+		private _target = "new" call OO_CONTAINER;
+		["setContainer", _result] call _source;
+		["setContainer", _result2] call _target;
+		MEMBER("source", _source);
+		MEMBER("target", _target);
 	};
 
 	PUBLIC FUNCTION("", "btnAction_OOP_Button_104") {
-		hint "bouton 104";
+		private _index = lbCurSel MEMBER("OOP_Listbox_103", nil);
+		if (_index > -1) then {
+			_result = ["remoteCall", ["moveItem", [player, carton, _index] , 2, false,2]] call bmeclient;
+			MEMBER("init", nil);
+		};
+		ctrlEnable [104, true];
 	};
 
 	PUBLIC FUNCTION("", "btnAction_OOP_Button_105") {
-		_index = lbCurSel MEMBER("OOP_Listbox_102", nil);
+		private _index = lbCurSel MEMBER("OOP_Listbox_102", nil);
 		if (_index > -1) then {
-			_result = ["remoteCall", ["moveItem", [carton, player, _index] , 2, false]] call bmeclient;
+			_result = ["remoteCall", ["moveItem", [carton, player, _index] , 2, false,2]] call bmeclient;
 			MEMBER("init", nil);
 		};
+		ctrlEnable [105, true];
 	};
 
 	PUBLIC FUNCTION("", "btnAction_OOP_Button_106") {
-		hint "bouton 106";
+			hint format["bouton 106 %1", canSuspend];
 	};
 
 	PUBLIC FUNCTION("", "btnAction_OOP_Button_107") {
