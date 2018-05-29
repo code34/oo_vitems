@@ -49,6 +49,8 @@
 			_target = _this select 1;
 			_index = _this select 2;
 			if (typeName _source != "code" || typeName _target != "code" || _index < 0 || typeName _index != "scalar") exitWith {false;};
+			if (count ("getContent" call _source)  == 0) exitWith{false;};
+
 			private _item = ["getItem", _index] call _source;
 			if !(["addItem", _item] call _target) exitWith {
 				["addItem", _item] call _source;
