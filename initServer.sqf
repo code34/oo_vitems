@@ -35,11 +35,14 @@
 	_piece = "new" call OO_ITEM;
 	_bouteille = "new" call OO_ITEM;
 	_canard = "new" call OO_ITEM;
+	_patate = "new" call OO_ITEM;
 
+	["setItem", ["patate","une vulgaire pomme de terre abimée","aliment",5,1,1,70]] call _patate;
 	["setItem", ["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
 	["setItem", ["bouteille","une bouteille vide","objet",50,1,1,100]] call _bouteille;
 	["setItem", ["canard","un canard bien vivant à 3 pattes","animal",50,9,9,100]] call _canard;
-	
+
+	["addItem", _patate] call _inventory;
 	["addItem", _piece] call _inventory;
 	["addItem", _bouteille] call _inventory;
 	["addItem", _canard] call _inventory;
@@ -47,10 +50,10 @@
 	carton setVariable["inventory", _inventory];
 	player setVariable["inventory", _inventory2];
 
-	getContent = {
+	getContainer = {
 		_object = _this;
 		_inventory = _object getVariable["inventory", []];
-		"getContentSerialize" call _inventory;
+		"getContainer" call _inventory;
 	};
 
 	putItem = {

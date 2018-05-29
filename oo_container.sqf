@@ -74,9 +74,9 @@
 			_weight;
 		};
 
-		PUBLIC FUNCTION("array","setContainer") {
-			DEBUG(#, "OO_CONTAINER::setContainer")
-			private _properties = ["name", "content", "limitsize", "limitweight"];
+		PUBLIC FUNCTION("array","setProperties") {
+			DEBUG(#, "OO_CONTAINER::setProperties")
+			private _properties = ["name", "limitsize", "limitweight"];
 			if(count _this < count _properties) exitWith {false;};
 			{
 				MEMBER(_x, _this select _forEachIndex);
@@ -84,29 +84,38 @@
 			true;
 		};
 
-		PUBLIC FUNCTION("","getContainer") {
-			DEBUG(#, "OO_CONTAINER::getContainer")
-			private _container = [];
-			private _properties = ["name", "content", "limitsize", "limitweight"];
+		PUBLIC FUNCTION("","getProperties") {
+			DEBUG(#, "OO_CONTAINER::getProperties")
+			private _array = [];
+			private _properties = ["name", "limitsize", "limitweight"];
 			{
-				_container pushBack MEMBER(_x, nil);
+				_array pushBack MEMBER(_x, nil);
 			} forEach _properties;
-			_container;
+			_array;
 		};
 
-		PUBLIC FUNCTION("code","addItem") {
-			DEBUG(#, "OO_CONTAINER::addItem")
-			private _newweight = MEMBER("countWeight", nil) + ("getWeight" call _this);
-			if( MEMBER("countSize", nil) <= MEMBER("limitsize", nil) && _newweight <= MEMBER("limitweight", nil)) exitWith {
-				MEMBER("content", nil) pushBack _this;
-				true;
-			};
-			false;
+		PUBLIC FUNCTION("","getContainer") {
+			DEBUG(#, "OO_CONTAINER::getContainer")
+			private _result = [];
+			_result pushBack MEMBER("getProperties", nil);
+			_result pushBack MEMBER("getContentSerialize", nil);
+			_result;
+		};
+
+		PUBLIC FUNCTION("array","setContainer") {
+			DEBUG(#, "OO_CONTAINER::setContainer")
+			MEMBER("setProperties", _this select 0);
+			MEMBER("setContentSerialize", _this select 1);
 		};
 
 		PUBLIC FUNCTION("","getContent") {
 			DEBUG(#, "OO_CONTAINER::getContent")
 			MEMBER("content", nil);
+		};
+
+		PUBLIC FUNCTION("array","setContent") {
+			DEBUG(#, "OO_CONTAINER::setContent")
+			MEMBER("content", _this);
 		};
 
 		PUBLIC FUNCTION("","getContentSerialize") {
@@ -133,6 +142,16 @@
 			{
 				MEMBER("content", nil) pushBack _x;
 			} foreach _array;
+		};
+
+		PUBLIC FUNCTION("code","addItem") {
+			DEBUG(#, "OO_CONTAINER::addItem")
+			private _newweight = MEMBER("countWeight", nil) + ("getWeight" call _this);
+			if( MEMBER("countSize", nil) <= MEMBER("limitsize", nil) && _newweight <= MEMBER("limitweight", nil)) exitWith {
+				MEMBER("content", nil) pushBack _this;
+				true;
+			};
+			false;
 		};
 
 		PUBLIC FUNCTION("scalar","getItem") {
