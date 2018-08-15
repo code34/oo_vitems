@@ -1,0 +1,160 @@
+
+	Author: code34 nicolas_boiteux@yahoo.fr
+	Copyright (C) 2017-2018 Nicolas BOITEUX
+
+	CLASS OO_VITEMS
+	
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function:  _container = "new" call OO_CONTAINER;
+	Create a new container object
+		
+	Parameters: 
+		nothing
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function:  _container = "getThis" call _container;
+	Return the container object (oop)
+		
+	--------------------------------------------------------------------------------------------------------------
+
+	Function:  _size = "getLimitSize" call _container;
+	Return scalar - limit size of container
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function: ["setLimitSize", _size] call _container;
+	Set the limit size of container - scalar
+
+	--------------------------------------------------------------------------------------------------------------
+
+	Function:  _weight = "getLimitWeight" call _container;
+	Return scalar - the limit weight of container
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  ["setLimitWeight", _weight] call _container;
+	Set the scalar limit weight of container
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _size = "countSize call _container;
+	Count the occuped size in container
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _weight = "countWeight" call _container;
+	Count the weight in container
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  ["setProperties", [_name, _limitsize, _limitweight]] call _container;
+	Set the properties of container from an array
+		_name of container : string
+		_limitsize : limit size of container : scalar
+		_limitweight : limit weight of container : scalar
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _properties = "getProperties" call _container;
+	Get the properties of container
+	Return
+		_name of container : string
+		_limitsize : limit size of container : scalar
+		_limitweight : limit weight of container : scalar
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _newcontainer = "getContainer" call _container;
+	Serialize container with its content in a array
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function: ["setContainer", _newcontainer] call _container;
+	Rebuild a container from a serialize container
+		_newcontainer: serialize of container
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:   _array = ["lock", _string] call _extdb3;
+	Disables all System Commands except for VERSION + LOCK_STATUS + various TIME/DATA Commands
+	params: 
+		string - password lock
+	return array
+
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _array = ["unlock", _string] call _extdb3;
+	params: 
+		string - password lock
+	return array
+
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _array = "lockStatus" call _extdb3;
+	return array - lock status
+		[0] // extension is unlocked.  
+		[1] // extension is locked.
+
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _array = "reset" call _extdb3;
+	reset the dll when debug .dll is used
+
+	return:
+		return [0] or
+		return [1] if success
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _locatime = "getLocalTime" call _extdb3;
+	return array - local time
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function:  _utctime = "getUtcTime" call _extdb3;
+	return array - utc time
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function: _uptime =  ["getUptime", _string] call _extdb3;
+	params : "SECONDS", "MINUTES", "HOURS"
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function: _array =  ["addDate", _array] call _extdb3;
+	params : 
+		param  [[0,0, Days, Hours, Minutes, Seconds], [+x Days, +x Hours, +x Minutes, +x Seconds]]
+
+	-------------------------------------------------------------------------------------------------------------
+
+	Function: _scalar =  "getOutPutSize" call _extdb3;
+	
+	return _scalar
+
+	--------------------------------------------------------------------------------------------------------------
+	
+	Function:  ["delete", _extdb3] call OO_EXTDB3;
+	Destroy the template object 
+		
+	Parameters:
+		object - extdb3 object
+	
+	Return : nothing
