@@ -23,7 +23,7 @@
 	call compile preprocessFileLineNumbers "oo_item.sqf";
 	call compile preprocessFileLineNumbers "oo_container.sqf";
 	call compile preprocessFileLineNumbers "oo_manager.sqf";
-	call compile preprocessFileLineNumbers "oo_inventaire.sqf";
+	call compile preprocessFileLineNumbers "gui\oo_inventaire.sqf";
 
 	// Initialization
 	bmeclient = NEW(OO_BME, nil);
