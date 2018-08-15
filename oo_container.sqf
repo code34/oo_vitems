@@ -35,36 +35,43 @@
 			MEMBER("limitweight", 0);
 		};
 
+		// Return this object
 		PUBLIC FUNCTION("","getThis") {
 			DEBUG(#, "OO_CONTAINER::getThis")
 			MEMBER("this", nil);
 		};
 
+		// Return the limit size of container
 		PUBLIC FUNCTION("","getLimitSize") {
 			DEBUG(#, "OO_CONTAINER::getLimitSize")
 			MEMBER("limitsize", nil);
 		};
 
+		// Set the limit size of container
 		PUBLIC FUNCTION("scalar","setLimitSize") {
 			DEBUG(#, "OO_CONTAINER::setLimitSize")
 			MEMBER("limitsize", _this);
 		};
 
+		// Return the limit weight of container
 		PUBLIC FUNCTION("","getLimitWeight") {
 			DEBUG(#, "OO_CONTAINER::getLimitWeight")
 			MEMBER("limitweight", nil);
 		};
 
+		// Set the limit weight of container
 		PUBLIC FUNCTION("scalar","setLimitWeight") {
 			DEBUG(#, "OO_CONTAINER::setLimitWeight")
 			MEMBER("limitweight", _this);
 		};
 
+		// Count the occuped size in container
 		PUBLIC FUNCTION("","countSize") {
 			DEBUG(#, "OO_CONTAINER::count")
 			count(MEMBER("content", nil));
 		};
 
+		// Count the weight in container
 		PUBLIC FUNCTION("","countWeight") {
 			DEBUG(#, "OO_CONTAINER::countWeight")
 			private _weight = 0;
@@ -74,6 +81,7 @@
 			_weight;
 		};
 
+		// Set the properties of container from an array
 		PUBLIC FUNCTION("array","setProperties") {
 			DEBUG(#, "OO_CONTAINER::setProperties")
 			private _properties = ["name", "limitsize", "limitweight"];
@@ -84,6 +92,7 @@
 			true;
 		};
 
+		// Get the properties of container with an array
 		PUBLIC FUNCTION("","getProperties") {
 			DEBUG(#, "OO_CONTAINER::getProperties")
 			private _array = [];
@@ -94,6 +103,7 @@
 			_array;
 		};
 
+		// Serialize container + content
 		PUBLIC FUNCTION("","getContainer") {
 			DEBUG(#, "OO_CONTAINER::getContainer")
 			private _result = [];
@@ -102,22 +112,26 @@
 			_result;
 		};
 
+		// Rebuild a container from a serialize container
 		PUBLIC FUNCTION("array","setContainer") {
 			DEBUG(#, "OO_CONTAINER::setContainer")
 			MEMBER("setProperties", _this select 0);
 			MEMBER("setContentSerialize", _this select 1);
 		};
 
+		// Return the content of container (OO object of type items)
 		PUBLIC FUNCTION("","getContent") {
 			DEBUG(#, "OO_CONTAINER::getContent")
 			MEMBER("content", nil);
 		};
 
+		// Set the content of container (OO object of type items)
 		PUBLIC FUNCTION("array","setContent") {
 			DEBUG(#, "OO_CONTAINER::setContent")
 			MEMBER("content", _this);
 		};
 
+		// Serialize all the items in container
 		PUBLIC FUNCTION("","getContentSerialize") {
 			DEBUG(#, "OO_CONTAINER::getContentSerialize")
 			private _result = [];
@@ -127,6 +141,7 @@
 			_result;
 		};
 
+		// Add serialize content into container
 		PUBLIC FUNCTION("array","addContentSerialize") {
 			DEBUG(#, "OO_CONTAINER::setContentSerialize")
 			private _array = _this;
@@ -135,15 +150,14 @@
 			} foreach _array;
 		};
 
+		// Refresh the content of container with serialize content
 		PUBLIC FUNCTION("array","setContentSerialize") {
 			DEBUG(#, "OO_CONTAINER::setContentSerialize")
 			MEMBER("content", []);
-			private _array = _this;
-			{
-				MEMBER("content", nil) pushBack _x;
-			} foreach _array;
+			MEMBER("addContentSerialize", _this);
 		};
 
+		// Add an item to the content of container
 		PUBLIC FUNCTION("code","addItem") {
 			DEBUG(#, "OO_CONTAINER::addItem")
 			private _newweight = MEMBER("countWeight", nil) + ("getWeight" call _this);
@@ -154,6 +168,7 @@
 			false;
 		};
 
+		// Delete an item of the content of container
 		PUBLIC FUNCTION("scalar","getItem") {
 			DEBUG(#, "OO_CONTAINER::getItem")
 			MEMBER("content", nil) deleteAt _this;

@@ -29,8 +29,8 @@
 	_inventory2 = "new" call OO_CONTAINER;
 	_manager = "new" call OO_MANAGER;
 
-	["setContainer", 	["carton",[],11,11]] call _inventory;
-	["setContainer", 	["joueur",[],10,10]] call _inventory2;
+	["setProperties", 	["carton",11,11]] call _inventory;
+	["setProperties", 	["joueur",10,10]] call _inventory2;
 
 	_piece = "new" call OO_ITEM;
 	_bouteille = "new" call OO_ITEM;
@@ -77,13 +77,13 @@
 
 	qwenchIsAlive = {true;};
 
-	/*	hint format ["Nb objets: %1 %2", "countSize" call _inventory, "countSize" call _inventory2];
+	hint format ["Objects number carton: %1 player: %2", "getContentSerialize" call _inventory, "getContentSerialize" call _inventory2];
 	sleep 2;
 
 	["moveItem", [_inventory, _inventory2, 0]] call _manager;
-	hint format ["After give: %1 %2", "countSize" call _inventory, "countSize" call _inventory2];
+	hint format ["Objects number carton: %1 player: %2", "countSize" call _inventory, "countSize" call _inventory2];
 	sleep 2;
 
 	["moveItem", [_inventory2, _inventory, 0]] call _manager;
-	hint format ["After give II: %1 %2", "countSize" call _inventory, "countSize" call _inventory2];
-	sleep 2;*/
+	hint format ["Objects number carton: %1 player: %2", "countSize" call _inventory, "countSize" call _inventory2];
+	sleep 2;

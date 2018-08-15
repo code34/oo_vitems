@@ -44,7 +44,7 @@ class oo_inventaire {
 							w = 9.97969 * pixelGrid * pixelW;
 							h = 5.2 * pixelGrid * pixelH;
 							text = "Transfert";
-							action = "'btnAction_OOP_Button_104' call inventaire;";
+							action = "ctrlEnable [104, false];'btnAction_OOP_Button_104' spawn inventaire;";
 						};
 						class OOP_Button_105_105: OOP_Button {
 							idc = 105;
@@ -53,7 +53,7 @@ class oo_inventaire {
 							w = 9.97969 * pixelGrid * pixelW;
 							h = 5.2 * pixelGrid * pixelH;
 							text = "Transfert";
-							action = "'btnAction_OOP_Button_105' call inventaire;";
+							action = "ctrlEnable [105, false];'btnAction_OOP_Button_105' spawn inventaire;";
 						};
 						class OOP_Button_106_106: OOP_Button {
 							idc = 106;
@@ -71,7 +71,7 @@ class oo_inventaire {
 							w = 91.5616 * pixelGrid * pixelW;
 							h = 1.73333 * pixelGrid * pixelH;
 							text = "Annuler";
-							action = "'btnAction_OOP_Button_107' call inventaire;";
+							action = "'btnAction_OOP_Button_107' spawn inventaire;";
 						};
 					};
 				};

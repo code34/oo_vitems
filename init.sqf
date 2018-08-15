@@ -16,7 +16,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	15203 cutText ["Loading...","BLACK FADED", 1000];
+	//15203 cutText ["Loading...","BLACK FADED", 1000];
 	#include "oop.h"
 
 	call compile preprocessFileLineNumbers "oo_bme.sqf";
@@ -34,4 +34,4 @@
 	};
 	15203 cutText ["","PLAIN", 0];
 
-	createDialog "oo_inventaire";
+	/*createDialog "oo_inventaire";*/
