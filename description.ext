@@ -29,6 +29,7 @@ class UI_VITEMS {
 							y = 1.73333 * pixelGrid * pixelH;
 							w = 45.9066 * pixelGrid * pixelW;
 							h = 50.2667 * pixelGrid * pixelH;
+							onLBSelChanged = "['onLBSelChanged_OOP_Listbox_102', _this] call UI_VITEMS";
 						};
 						class OOP_TextMulti_103_103: OOP_TextMulti {
 							idc = 103;

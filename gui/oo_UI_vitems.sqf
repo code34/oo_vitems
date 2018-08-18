@@ -28,7 +28,6 @@ CLASS("oo_UI_VITEMS")
 		{
 			MEMBER("OOP_Listbox_102", nil) lbAdd ((_x select 0) + " - " + (_x select 1));
 		}foreach _content;
-		MEMBER("OOP_TextMulti_103", nil) ctrlSetStructuredText parseText format ["Poid: %1<br/>Prix: %2<br/>", 10,10];
 	};
 
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_EXIT") {
@@ -38,6 +37,15 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_DROP") {
 
 	};
+
+	PUBLIC FUNCTION("array", "onLBSelChanged_OOP_Listbox_102") {
+		private _control = _this select 0;
+		private _index = _this select 1;
+		_content = ("getContentSerialize" call gui_invtest) select _index;
+		//"name", "description", "category", "price","weight", "owner", "life"
+		MEMBER("OOP_TextMulti_103", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2<br/>Weight: %3<br/>Owner: %4<br/>Durability: %5<br/>", _content select 2,_content select 3,_content select 4,_content select 5];
+	};
+
 	PUBLIC FUNCTION("", "getDisplay") FUNC_GETVAR("Display");
 	PUBLIC FUNCTION("", "getMainLayer") FUNC_GETVAR("MainLayer");
 	PUBLIC FUNCTION("", "getOOP_Listbox_102") FUNC_GETVAR("OOP_Listbox_102");
