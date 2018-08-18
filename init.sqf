@@ -23,7 +23,7 @@
 	call compile preprocessFileLineNumbers "oo_item.sqf";
 	call compile preprocessFileLineNumbers "oo_container.sqf";
 	call compile preprocessFileLineNumbers "oo_manager.sqf";
-	call compile preprocessFileLineNumbers "gui\oo_inventaire.sqf";
+	call compile preprocessFileLineNumbers "gui\oo_UI_vitems.sqf";
 
 	// Initialization
 	bmeclient = NEW(OO_BME, nil);
@@ -34,4 +34,4 @@
 	};
 	15203 cutText ["","PLAIN", 0];
 
-	/*createDialog "oo_inventaire";*/
+	createDialog "UI_VITEMS";
