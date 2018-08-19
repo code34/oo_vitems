@@ -17,16 +17,15 @@
 	*/
 
 	//15203 cutText ["Loading...","BLACK FADED", 1000];
-	#include "oop.h"
 
-	call compile preprocessFileLineNumbers "oo_bme.sqf";
-	call compile preprocessFileLineNumbers "oo_item.sqf";
-	call compile preprocessFileLineNumbers "oo_container.sqf";
-	call compile preprocessFileLineNumbers "oo_manager.sqf";
+	call compile preprocessFileLineNumbers "bme\oo_bme.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_item.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_manager.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_vitems.sqf";
 
 	// Initialization
-	bmeclient = NEW(OO_BME, nil);
+	bmeclient = "new" call OO_BME;
 	private _result = false;
 	while { _result isEqualTo false} do { 
 		_result= ["remoteCall", ["qwenchIsAlive", "" , 2, false]] call bmeclient;
@@ -34,4 +33,4 @@
 	};
 	15203 cutText ["","PLAIN", 0];
 
-	createDialog "UI_VITEMS";
+	_actionID = player addAction ["Inventory", "actions\listinventory.sqf"];

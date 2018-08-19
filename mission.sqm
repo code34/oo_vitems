@@ -8,27 +8,29 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=5;
+		nextID=9;
 	};
 	class Camera
 	{
-		pos[]={4433.2393,7.7470603,1199.7671};
-		dir[]={-0.36928171,-0.3381902,0.86561513};
-		up[]={-0.13270473,0.94107109,0.31106746};
-		aside[]={0.91981077,-1.4761463e-007,0.39240387};
+		pos[]={4432.1162,11.254727,1192.6829};
+		dir[]={0.010877885,-0.40929875,0.91235739};
+		up[]={0.0048799072,0.91238999,0.40927118};
+		aside[]={0.9999494,-2.6846851e-007,-0.01192088};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
-	"A3_Props_F_Orange_Humanitarian_Supplies"
+	"A3_Props_F_Orange_Humanitarian_Supplies",
+	"A3_Structures_F_Wrecks",
+	"A3_Props_F_Orange_Furniture"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -40,6 +42,13 @@ class AddonsMetaData
 		{
 			className="A3_Props_F_Orange";
 			name="Arma 3 Orange - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item2
+		{
+			className="A3_Structures_F_Wrecks";
+			name="Arma 3 - Vehicle Wrecks";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -71,7 +80,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=2;
+		items=4;
 		class Item0
 		{
 			dataType="Group";
@@ -100,6 +109,7 @@ class Mission
 			{
 			};
 			id=0;
+			atlOffset=-5;
 		};
 		class Item1
 		{
@@ -112,10 +122,42 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				name="carton";
+				name="box";
 			};
 			id=4;
 			type="Land_PaperBox_01_small_closed_white_IDAP_F";
+		};
+		class Item2
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4435.312,5.8460236,1203.6121};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="uaz";
+			};
+			id=7;
+			type="Land_Wreck_UAZ_F";
+		};
+		class Item3
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4426.644,5.780499,1204.526};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="wardrobe";
+			};
+			id=8;
+			type="Land_OfficeCabinet_02_F";
 		};
 	};
 };

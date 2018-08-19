@@ -16,60 +16,63 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	#include "oop.h"
-
-	call compile preprocessFileLineNumbers "oo_bme.sqf";
-	call compile preprocessFileLineNumbers "oo_item.sqf";
-	call compile preprocessFileLineNumbers "oo_container.sqf";
-	call compile preprocessFileLineNumbers "oo_manager.sqf";
-
-	sleep 1;
+	call compile preprocessFileLineNumbers "bme\oo_bme.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_item.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
+	call compile preprocessFileLineNumbers "vitems\oo_manager.sqf";
 
 	_inventory = "new" call OO_CONTAINER;
 	_inventory2 = "new" call OO_CONTAINER;
+	_inventory3 = "new" call OO_CONTAINER;
 	_manager = "new" call OO_MANAGER;
 
 	// attach a container to a 3D object
-	carton setVariable["inventory", _inventory];
-	player setVariable["inventory", _inventory2];
+	box setVariable["inventory", _inventory, true];
+	wardrobe setVariable["inventory", _inventory2, true];
+	uaz setVariable["inventory", _inventory3, true];
 
 	// fix properties of container
-	["setProperties", 	["carton",11,11]] call _inventory;
-	["setProperties", 	["joueur",10,10]] call _inventory2;
+	["setProperties", 	["box",100,100]] call _inventory;
+	["setProperties", 	["wardrobe",100,100]] call _inventory2;
+	["setProperties", 	["uaz",100,100]] call _inventory3;
 
 	// create new items
-	_piece = "new" call OO_ITEM;
-	_bouteille = "new" call OO_ITEM;
-	_canard = "new" call OO_ITEM;
-	_patate = "new" call OO_ITEM;
+	_coin = "new" call OO_ITEM;
+	_bottle = "new" call OO_ITEM;
+	_duck = "new" call OO_ITEM;
+	_potatoe = "new" call OO_ITEM;
 
 	// set items properties
-	["setItem", ["patate","une vulgaire pomme de terre abimée","aliment",5,1,1,70]] call _patate;
-	["setItem", ["piece","piece du XXème siècle","monnaie",500,0,0,100]] call _piece;
-	["setItem", ["bouteille","une bouteille vide","objet",50,1,1,100]] call _bouteille;
-	["setItem", ["canard","un canard bien vivant à 3 pattes","animal",50,9,9,100]] call _canard;
+	["setItem", ["potatoe","A vulgar potato damaged","food",2,1,"Captain_A",10]] call _potatoe;
+	["setItem", ["coin","A XX century coin","money",5,1,"Food MetalX",90]] call _coin;
+	["setItem", ["bottle","An empty bottle","object",1,1,"Redcolision41",100]] call _bottle;
+	["setItem", ["duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",100]] call _duck;
 
 	// add items into containers
-	["addItem", _patate] call _inventory;
-	["addItem", _piece] call _inventory;
-	["addItem", _bouteille] call _inventory;
-	["addItem", _canard] call _inventory;
+	["addItem", _potatoe] call _inventory;
+	["addItem", _coin] call _inventory;
+	["addItem", _bottle] call _inventory;
+	["addItem", _duck] call _inventory;
 
-	// garbage variable for GUI TEST
-	gui_invtest = _inventory;
+	_ak56 = "new" call OO_ITEM;
+	_tincan = "new" call OO_ITEM;
+	_gpstracer = "new" call OO_ITEM;
+
+	["setItem", ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",70]] call _ak56;
+	["setItem", ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,1,"Unknown",40]] call _gpstracer;
+	["setItem", ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,3,"Unknown",70]] call _tincan;
+	
+	["addItem", _tincan] call _inventory2;
+	["addItem", _ak56] call _inventory2;
+	["addItem", _gpstracer] call _inventory2;
+
+	_wheel = "new" call OO_ITEM;
+	_wrench = "new" call OO_ITEM;
+	
+	["setItem", ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",30]] call _wheel;
+	["setItem", ["Adjustable wrench","a wrench that allows you to make the most basic repairs","tools",2,1,"Unknown",80]] call _wrench;
+
+	["addItem", _wheel] call _inventory3;
+	["addItem", _wrench] call _inventory3;
 
 	qwenchIsAlive = {true;};
-
-	hint format ["Objects number carton: %1 player: %2", "getContentSerialize" call _inventory, "getContentSerialize" call _inventory2];
-	sleep 2;
-
-	["moveItem", [_inventory, _inventory2, 0]] call _manager;
-	hint format ["Objects number carton: %1 player: %2", "countSize" call _inventory, "countSize" call _inventory2];
-	sleep 2;
-
-	["moveItem", [_inventory2, _inventory, 0]] call _manager;
-	hint format ["Objects number carton: %1 player: %2", "countSize" call _inventory, "countSize" call _inventory2];
-	sleep 2;
-
-	hint format ["Objects number carton: %1 player: %2", "getContentSerialize" call _inventory, "getContentSerialize" call _inventory2];
-	sleep 2;

@@ -27,7 +27,7 @@
 		PRIVATE VARIABLE("string","category");
 		PRIVATE VARIABLE("scalar","price");
 		PRIVATE VARIABLE("scalar","weight");
-		PRIVATE VARIABLE("scalar","owner");
+		PRIVATE VARIABLE("string","owner");
 		PRIVATE VARIABLE("scalar","life");
 
 		PUBLIC FUNCTION("","constructor") { 
@@ -37,7 +37,7 @@
 			MEMBER("category", "");
 			MEMBER("price", 0);
 			MEMBER("weight", 0);
-			MEMBER("owner", 0);
+			MEMBER("owner", "");
 			MEMBER("life", 0);
 		};
 
@@ -121,7 +121,7 @@
 			MEMBER("owner", nil);
 		};
 
-		PUBLIC FUNCTION("scalar","setOwner") {
+		PUBLIC FUNCTION("string","setOwner") {
 			DEBUG(#, "OO_ITEM::setOwner")
 			MEMBER("owner", _this);
 		};
