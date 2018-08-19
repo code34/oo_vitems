@@ -90,71 +90,35 @@
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:   _array = ["lock", _string] call _extdb3;
-	Disables all System Commands except for VERSION + LOCK_STATUS + various TIME/DATA Commands
-	params: 
-		string - password lock
-	return array
-
+	Function: _content = "getContent"  call _container;
+	Return an array containing the OO ITEMS in container
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:  _array = ["unlock", _string] call _extdb3;
-	params: 
-		string - password lock
-	return array
-
+	Function: ["setContent", _content]  call _container;
+	Set the content of container with an array fill of OO ITEMS
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:  _array = "lockStatus" call _extdb3;
-	return array - lock status
-		[0] // extension is unlocked.  
-		[1] // extension is locked.
-
+	Function: ["addContentSerialize", _content] call _container;
+	Add an array containing content serialized to the content of container
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:  _array = "reset" call _extdb3;
-	reset the dll when debug .dll is used
-
-	return:
-		return [0] or
-		return [1] if success
+	Function: ["setContentSerialize", _content] call _container;
+	Set with an array of content serialized the content of container
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:  _locatime = "getLocalTime" call _extdb3;
-	return array - local time
+	Function: _content = "getContentSerialize"  call _container;
+	Return an array containing the content of containers serialized
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function:  _utctime = "getUtcTime" call _extdb3;
-	return array - utc time
+	Function: ["addItem", _item] call _container;
+	Add an OO ITEM to the content of container
 
 	-------------------------------------------------------------------------------------------------------------
 
-	Function: _uptime =  ["getUptime", _string] call _extdb3;
-	params : "SECONDS", "MINUTES", "HOURS"
-
-	-------------------------------------------------------------------------------------------------------------
-
-	Function: _array =  ["addDate", _array] call _extdb3;
-	params : 
-		param  [[0,0, Days, Hours, Minutes, Seconds], [+x Days, +x Hours, +x Minutes, +x Seconds]]
-
-	-------------------------------------------------------------------------------------------------------------
-
-	Function: _scalar =  "getOutPutSize" call _extdb3;
-	
-	return _scalar
-
-	--------------------------------------------------------------------------------------------------------------
-	
-	Function:  ["delete", _extdb3] call OO_EXTDB3;
-	Destroy the template object 
-		
-	Parameters:
-		object - extdb3 object
-	
-	Return : nothing
+	Function: ["getItem", _item] call _container;
+	Get an OO ITEM of the content of container, and delete it of the content
