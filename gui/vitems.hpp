@@ -13,10 +13,10 @@ class UI_VITEMS {
 			w = 159.675 * pixelGrid * pixelW;
 			h = 86.6667 * pixelGrid * pixelH;
 			class controls{
-				class OOP_SubLayer_101_101 : OOP_SubLayer {
+				class OOP_SubLayer_101_0_101 : OOP_SubLayer {
 					idc = 101;
-					x = 33.9309 * pixelGrid * pixelW;
-					y = 17.3333 * pixelGrid * pixelH;
+					x = 29.9391 * pixelGrid * pixelW;
+					y = 15.6 * pixelGrid * pixelH;
 					w = 101.793 * pixelGrid * pixelW;
 					h = 58.9334 * pixelGrid * pixelH;
 					class controls{
@@ -64,8 +64,7 @@ class UI_VITEMS {
 							y = 6.93333 * pixelGrid * pixelH;
 							w = 59.8781 * pixelGrid * pixelW;
 							h = 45.0667 * pixelGrid * pixelH;
-							text = "";
-							size = 0.04;
+							text = "text";
 						};
 						class UI_VITEMS_TAKE_107: OOP_Button {
 							idc = 107;
@@ -76,6 +75,15 @@ class UI_VITEMS {
 							text = "Take";
 							action = "'btnAction_UI_VITEMS_TAKE' call UI_VITEMS;";
 						};
+						class UI_VITEMS_PUT_115: OOP_Button {
+							idc = 115;
+							x = 45.9066 * pixelGrid * pixelW;
+							y = 53.7333 * pixelGrid * pixelH;
+							w = 15.9675 * pixelGrid * pixelW;
+							h = 3.46667 * pixelGrid * pixelH;
+							text = "Put";
+							action = "'btnAction_UI_VITEMS_PUT' call UI_VITEMS;";
+						};
 					};
 				};
 			};
@@ -85,5 +93,5 @@ class UI_VITEMS {
 };
 
 /*
-["UI_VITEMS",10001,[[[["33.9309 * pixelGrid * pixelW","17.3333 * pixelGrid * pixelH","101.793 * pixelGrid * pixelW","58.9334 * pixelGrid * pixelH"],"","OOP_SubLayer_101","","OOP_SubLayer",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]],[[[["0.2515 * pixelGrid * pixelW","5.2 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH"],"","BACKGROUND_VITEMS","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.78],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["81.8334 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Exit","UI_VITEMS_EXIT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["0.2515 * pixelGrid * pixelW","0.182 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","5.018 * pixelGrid * pixelH"],"Inventory","UI_VITEMS_TITLE","","OOP_Text",true,[],[1,1,1,1],[0.1,0.38,0.04,1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["1.99594 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","31.935 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"","LISTBOX_VITEMS","","OOP_Listbox",true,["onLBSelChanged"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","59.8781 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"text","OOP_StructuredText_105","","OOP_StructuredText",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Take","UI_VITEMS_TAKE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]]]
+["UI_VITEMS",10001,[[[["29.9391 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH","101.793 * pixelGrid * pixelW","58.9334 * pixelGrid * pixelH"],"","OOP_SubLayer_101_0","","OOP_SubLayer",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]],[[[["0.2515 * pixelGrid * pixelW","5.2 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH"],"","BACKGROUND_VITEMS","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.78],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["81.8334 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Exit","UI_VITEMS_EXIT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["0.2515 * pixelGrid * pixelW","0.182 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","5.018 * pixelGrid * pixelH"],"Inventory","UI_VITEMS_TITLE","","OOP_Text",true,[],[1,1,1,1],[0.1,0.38,0.04,1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["1.99594 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","31.935 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"","LISTBOX_VITEMS","","OOP_Listbox",true,["onLBSelChanged"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","59.8781 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"text","OOP_StructuredText_105","","OOP_StructuredText",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Take","UI_VITEMS_TAKE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["45.9066 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Put","UI_VITEMS_PUT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]]]
 */
