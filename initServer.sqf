@@ -24,17 +24,21 @@
 	_inventory = "new" call OO_CONTAINER;
 	_inventory2 = "new" call OO_CONTAINER;
 	_inventory3 = "new" call OO_CONTAINER;
+	_inventory4 = "new" call OO_CONTAINER;
+
 	_manager = "new" call OO_MANAGER;
 
 	// attach a container to a 3D object
 	box setVariable["inventory", _inventory, true];
 	wardrobe setVariable["inventory", _inventory2, true];
 	uaz setVariable["inventory", _inventory3, true];
+	workbench setVariable["inventory", _inventory4, true];
 
 	// fix properties of container
 	["setProperties", 	["box",100,100]] call _inventory;
 	["setProperties", 	["wardrobe",100,100]] call _inventory2;
 	["setProperties", 	["uaz",100,100]] call _inventory3;
+	["setProperties", 	["workbench",100,100]] call _inventory4;
 
 	// create new items
 	_coin = "new" call OO_ITEM;
@@ -74,5 +78,9 @@
 
 	["addItem", _wheel] call _inventory3;
 	["addItem", _wrench] call _inventory3;
+
+	_figurine = "new" call OO_ITEM;
+	["setItem", ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",90]] call _figurine;
+	["addItem", _figurine] call _inventory4;
 
 	qwenchIsAlive = {true;};

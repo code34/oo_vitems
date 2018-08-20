@@ -33,4 +33,9 @@
 	};
 	15203 cutText ["","PLAIN", 0];
 
+	// Create the inventory of player
+	_inventory = "new" call OO_CONTAINER;
+	player setVariable["inventory", _inventory, false];
+	["setProperties", 	["box",40,40]] call _inventory;
+
 	_actionID = player addAction ["Inventory", "actions\listinventory.sqf"];

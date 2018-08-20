@@ -8,14 +8,14 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=9;
+		nextID=10;
 	};
 	class Camera
 	{
-		pos[]={4432.1162,11.254727,1192.6829};
-		dir[]={0.010877885,-0.40929875,0.91235739};
-		up[]={0.0048799072,0.91238999,0.40927118};
-		aside[]={0.9999494,-2.6846851e-007,-0.01192088};
+		pos[]={4419.3867,11.254727,1201.8611};
+		dir[]={0.86714011,-0.45229521,-0.20870176};
+		up[]={0.43974146,0.89185542,-0.10583651};
+		aside[]={-0.23400259,-5.6745921e-007,-0.97226936};
 	};
 };
 binarizationWanted=0;
@@ -24,13 +24,14 @@ addons[]=
 	"A3_Characters_F",
 	"A3_Props_F_Orange_Humanitarian_Supplies",
 	"A3_Structures_F_Wrecks",
-	"A3_Props_F_Orange_Furniture"
+	"A3_Props_F_Orange_Furniture",
+	"A3_Structures_F_Heli_Furniture"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=3;
+		items=4;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -49,6 +50,13 @@ class AddonsMetaData
 		{
 			className="A3_Structures_F_Wrecks";
 			name="Arma 3 - Vehicle Wrecks";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item3
+		{
+			className="A3_Structures_F_Heli";
+			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -80,7 +88,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=5;
 		class Item0
 		{
 			dataType="Group";
@@ -109,7 +117,6 @@ class Mission
 			{
 			};
 			id=0;
-			atlOffset=-5;
 		};
 		class Item1
 		{
@@ -158,6 +165,22 @@ class Mission
 			};
 			id=8;
 			type="Land_OfficeCabinet_02_F";
+		};
+		class Item4
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4435.3931,5.4967451,1196.3409};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="workbench";
+			};
+			id=9;
+			type="Land_Workbench_01_F";
 		};
 	};
 };
