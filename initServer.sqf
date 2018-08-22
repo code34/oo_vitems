@@ -63,8 +63,8 @@
 	_gpstracer = "new" call OO_ITEM;
 
 	["setItem", ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",70]] call _ak56;
-	["setItem", ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,1,"Unknown",40]] call _gpstracer;
-	["setItem", ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,3,"Unknown",70]] call _tincan;
+	["setItem", ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",40]] call _gpstracer;
+	["setItem", ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",70]] call _tincan;
 	
 	["addItem", _tincan] call _inventory2;
 	["addItem", _ak56] call _inventory2;
