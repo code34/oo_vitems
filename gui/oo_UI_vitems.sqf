@@ -85,7 +85,7 @@ CLASS("oo_UI_VITEMS")
 			private _content = "getContent" call MEMBER("inventory", nil);
 			private _item = _content select _index;
 			private _code = "getUsecode" call _item;
-			_index call (missionNamespace getVariable _code);
+			[MEMBER("inventory", nil), _item, _index] call (missionNamespace getVariable _code);
 		};
 	};
 

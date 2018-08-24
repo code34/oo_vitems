@@ -101,7 +101,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={4430.1484,5.0014391,1200.5171};
+						position[]={4430.1479,5.0014391,1200.5171};
 					};
 					side="West";
 					flags=7;
@@ -111,6 +111,48 @@ class Mission
 					};
 					id=1;
 					type="B_support_GMG_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male10ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 			};
 			class Attributes

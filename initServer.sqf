@@ -54,10 +54,11 @@
 	["setItem", ["duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",100, ""]] call _duck;
 	["setItem", ["lighter", "a lighter that will allow you to light campfires quickly. This object is not waterproof","object",5,0.1,"LyLKaay",45, ""]] call _lighter;
 
-	lighter_usecode = { 
-		skipTime 12; 
-	};
+	// add 2 examples use code
+	lighter_usecode = { skipTime 12;};
 	["setUsecode", "lighter_usecode"] call _lighter;
+	bottle_usecode = { hint "You drink all the bottle. You fill very sick and finaly you die."; player setDamage 1;};
+	["setUsecode", "bottle_usecode"] call _bottle;
 
 	// add items into containers
 	["addItem", _potatoe] call _inventory;
