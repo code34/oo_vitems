@@ -80,11 +80,13 @@ CLASS("oo_UI_VITEMS")
 	};
 
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_USE") {
-		private _content = "getContent" call MEMBER("inventory", nil);
 		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS", nil);
-		private _item = _content select _index;
-		private _code = "getUsecode" call _item;
-		_index call (missionNamespace getVariable _code);
+		if(_index > -1) then {
+			private _content = "getContent" call MEMBER("inventory", nil);
+			private _item = _content select _index;
+			private _code = "getUsecode" call _item;
+			_index call (missionNamespace getVariable _code);
+		};
 	};
 
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_TAKE") {
