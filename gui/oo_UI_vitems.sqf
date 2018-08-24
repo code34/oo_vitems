@@ -11,6 +11,7 @@ CLASS("oo_UI_VITEMS")
 	PRIVATE UI_VARIABLE("control", "UI_VITEMS_SWITCH");
 	PRIVATE UI_VARIABLE("control", "UI_VITEMS_TAKE");
 	PRIVATE UI_VARIABLE("control", "UI_VITEMS_TITLE");
+	PRIVATE UI_VARIABLE("control", "UI_VITEMS_USE");
 	PRIVATE UI_VARIABLE("display", "Display");
 	PRIVATE VARIABLE("code", "inventory");
 	PRIVATE VARIABLE("string", "mode");
@@ -28,11 +29,14 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("UI_VITEMS_SWITCH", _this displayCtrl 108);
 		MEMBER("UI_VITEMS_TAKE", _this displayCtrl 107);
 		MEMBER("UI_VITEMS_TITLE", _this displayCtrl 104);
+		MEMBER("UI_VITEMS_USE", _this displayCtrl 109);
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
 		if (player distance cursorObject > 3) then {
 			MEMBER("setMode", "player");
+			MEMBER("UI_VITEMS_SWITCH", nil) ctrlShow false;
+			MEMBER("UI_VITEMS_TAKE", nil) ctrlShow false;
 		} else {
 			MEMBER("setMode", "object");
 		};
@@ -75,6 +79,14 @@ CLASS("oo_UI_VITEMS")
 		};
 	};
 
+	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_USE") {
+		private _content = "getContent" call MEMBER("inventory", nil);
+		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS", nil);
+		private _item = _content select _index;
+		private _code = "getUsecode" call _item;
+		_index call (missionNamespace getVariable _code);
+	};
+
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_TAKE") {
 		private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if(_index > -1) then {
@@ -85,11 +97,13 @@ CLASS("oo_UI_VITEMS")
 				["addItem", _item] call _inventory;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
 			} else {
-				private _inventory = cursorObject getVariable "inventory";
-				MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
-				private _item = ["getItem", _index] call MEMBER("inventory", nil);
-				["addItem", _item] call _inventory;
-				MEMBER("refresh_LISTBOX_VITEMS", nil);
+				if (!isNull cursorObject) then {
+					private _inventory = cursorObject getVariable "inventory";
+					MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
+					private _item = ["getItem", _index] call MEMBER("inventory", nil);
+					["addItem", _item] call _inventory;
+					MEMBER("refresh_LISTBOX_VITEMS", nil);
+				};
 			};
 		};
 	};
@@ -135,7 +149,7 @@ CLASS("oo_UI_VITEMS")
 		};
 		MEMBER("refresh_LISTBOX_VITEMS", nil);
 	};
-
+	
 	PUBLIC FUNCTION("", "getBACKGROUND_VITEMS") FUNC_GETVAR("BACKGROUND_VITEMS");
 	PUBLIC FUNCTION("", "getDisplay") FUNC_GETVAR("Display");
 	PUBLIC FUNCTION("", "getLISTBOX_VITEMS") FUNC_GETVAR("LISTBOX_VITEMS");
@@ -147,6 +161,7 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("", "getUI_VITEMS_SWITCH") FUNC_GETVAR("UI_VITEMS_SWITCH");
 	PUBLIC FUNCTION("", "getUI_VITEMS_TAKE") FUNC_GETVAR("UI_VITEMS_TAKE");
 	PUBLIC FUNCTION("", "getUI_VITEMS_TITLE") FUNC_GETVAR("UI_VITEMS_TITLE");
+	PUBLIC FUNCTION("", "getUI_VITEMS_USE") FUNC_GETVAR("UI_VITEMS_USE");
 	PUBLIC FUNCTION("control", "setBACKGROUND_VITEMS"){ MEMBER("BACKGROUND_VITEMS", _this); };
 	PUBLIC FUNCTION("control", "setLISTBOX_VITEMS"){ MEMBER("LISTBOX_VITEMS", _this); };
 	PUBLIC FUNCTION("control", "setMainLayer"){ MEMBER("MainLayer", _this); };
@@ -157,6 +172,7 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("control", "setUI_VITEMS_SWITCH"){ MEMBER("UI_VITEMS_SWITCH", _this); };
 	PUBLIC FUNCTION("control", "setUI_VITEMS_TAKE"){ MEMBER("UI_VITEMS_TAKE", _this); };
 	PUBLIC FUNCTION("control", "setUI_VITEMS_TITLE"){ MEMBER("UI_VITEMS_TITLE", _this); };
+	PUBLIC FUNCTION("control", "setUI_VITEMS_USE"){ MEMBER("UI_VITEMS_USE", _this); };
 	PUBLIC FUNCTION("display", "setDisplay"){ MEMBER("Display", _this); };
 	PUBLIC FUNCTION("", "deconstructor"){
 		DELETE_UI_VARIABLE("BACKGROUND_VITEMS");
@@ -169,6 +185,7 @@ CLASS("oo_UI_VITEMS")
 		DELETE_UI_VARIABLE("UI_VITEMS_SWITCH");
 		DELETE_UI_VARIABLE("UI_VITEMS_TAKE");
 		DELETE_UI_VARIABLE("UI_VITEMS_TITLE");
+		DELETE_UI_VARIABLE("UI_VITEMS_USE");
 		DELETE_UI_VARIABLE("Display");
 	};
 ENDCLASS;

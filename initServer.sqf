@@ -45,26 +45,34 @@
 	_bottle = "new" call OO_ITEM;
 	_duck = "new" call OO_ITEM;
 	_potatoe = "new" call OO_ITEM;
+	_lighter = "new" call OO_ITEM;
 
 	// set items properties
-	["setItem", ["potatoe","A vulgar potato damaged","food",2,1,"Captain_A",10]] call _potatoe;
-	["setItem", ["coin","A XX century coin","money",5,1,"Food MetalX",90]] call _coin;
-	["setItem", ["bottle","An empty bottle","object",1,1,"Redcolision41",100]] call _bottle;
-	["setItem", ["duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",100]] call _duck;
+	["setItem", ["potatoe","A vulgar potato damaged","food",2,1,"Captain_A",10, ""]] call _potatoe;
+	["setItem", ["coin","A XX century coin","money",5,1,"Food MetalX",90, ""]] call _coin;
+	["setItem", ["bottle","An empty bottle","object",1,1,"Redcolision41",100, ""]] call _bottle;
+	["setItem", ["duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",100, ""]] call _duck;
+	["setItem", ["lighter", "a lighter that will allow you to light campfires quickly. This object is not waterproof","object",5,0.1,"LyLKaay",45, ""]] call _lighter;
+
+	lighter_usecode = { 
+		skipTime 12; 
+	};
+	["setUsecode", "lighter_usecode"] call _lighter;
 
 	// add items into containers
 	["addItem", _potatoe] call _inventory;
 	["addItem", _coin] call _inventory;
 	["addItem", _bottle] call _inventory;
 	["addItem", _duck] call _inventory;
+	["addItem", _lighter] call _inventory;
 
 	_ak56 = "new" call OO_ITEM;
 	_tincan = "new" call OO_ITEM;
 	_gpstracer = "new" call OO_ITEM;
 
-	["setItem", ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",70]] call _ak56;
-	["setItem", ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",40]] call _gpstracer;
-	["setItem", ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",70]] call _tincan;
+	["setItem", ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",70, ""]] call _ak56;
+	["setItem", ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",40, ""]] call _gpstracer;
+	["setItem", ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",70, ""]] call _tincan;
 	
 	["addItem", _tincan] call _inventory2;
 	["addItem", _ak56] call _inventory2;
@@ -73,14 +81,14 @@
 	_wheel = "new" call OO_ITEM;
 	_wrench = "new" call OO_ITEM;
 	
-	["setItem", ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",30]] call _wheel;
-	["setItem", ["Adjustable wrench","a wrench that allows you to make the most basic repairs","tools",2,1,"Unknown",80]] call _wrench;
+	["setItem", ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",30, ""]] call _wheel;
+	["setItem", ["Adjustable wrench","a wrench that allows you to make the most basic repairs","tools",2,1,"Unknown",80, ""]] call _wrench;
 
 	["addItem", _wheel] call _inventory3;
 	["addItem", _wrench] call _inventory3;
 
 	_figurine = "new" call OO_ITEM;
-	["setItem", ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",90]] call _figurine;
+	["setItem", ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",90, ""]] call _figurine;
 	["addItem", _figurine] call _inventory4;
 
 	qwenchIsAlive = {true;};

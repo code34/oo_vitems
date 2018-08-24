@@ -29,6 +29,7 @@
 		PRIVATE VARIABLE("scalar","weight");
 		PRIVATE VARIABLE("string","owner");
 		PRIVATE VARIABLE("scalar","life");
+		PRIVATE VARIABLE("string", "usecode");
 
 		PUBLIC FUNCTION("","constructor") { 
 			DEBUG(#, "OO_ITEM::constructor")
@@ -39,6 +40,7 @@
 			MEMBER("weight", 0);
 			MEMBER("owner", "");
 			MEMBER("life", 0);
+			MEMBER("usecode", "");
 		};
 
 		PUBLIC FUNCTION("","getThis") {
@@ -48,7 +50,7 @@
 
 		PUBLIC FUNCTION("array","setItem") {
 			DEBUG(#, "OO_ITEM::setItem")
-			private _properties = ["name", "description", "category", "price","weight", "owner", "life"];
+			private _properties = ["name", "description", "category", "price","weight", "owner", "life", "usecode"];
 			if(count _this < count _properties) exitWith {false;};
 			{
 				MEMBER(_x, _this select _forEachIndex);
@@ -58,7 +60,7 @@
 
 		PUBLIC FUNCTION("","getItem") {
 			DEBUG(#, "OO_ITEM::getItem")
-			private _properties = ["name", "description", "category", "price","weight", "owner", "life"];
+			private _properties = ["name", "description", "category", "price","weight", "owner", "life", "usecode"];
 			private _item = [];
 			{
 				_item pushBack MEMBER(_x, nil);
@@ -134,6 +136,16 @@
 		PUBLIC FUNCTION("string","setCategory") {
 			DEBUG(#, "OO_ITEM::setCategory")
 			MEMBER("category", _this);
+		};
+
+		PUBLIC FUNCTION("string","setUsecode") {
+			DEBUG(#, "OO_ITEM::setUsecode")
+			MEMBER("usecode", _this);
+		};
+
+		PUBLIC FUNCTION("","getUsecode") {
+			DEBUG(#, "OO_ITEM::getUsecode")
+			MEMBER("usecode", nil);
 		};
 
 		PUBLIC FUNCTION("","deconstructor") {
