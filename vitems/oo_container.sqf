@@ -174,6 +174,12 @@
 			MEMBER("content", nil) deleteAt _this;
 		};
 
+		// Set an item at array pos
+		PUBLIC FUNCTION("array","setItem") {
+			DEBUG(#, "OO_CONTAINER::setItem")
+			MEMBER("content", nil) set[_this select 0, _this select 1];
+		};
+
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_CONTAINER::deconstructor")
 			DELETE_VARIABLE("this");

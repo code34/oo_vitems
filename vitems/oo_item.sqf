@@ -73,7 +73,7 @@
 			MEMBER("life", nil);
 		};
 
-		PUBLIC FUNCTION("","setLife") {
+		PUBLIC FUNCTION("scalar","setLife") {
 			DEBUG(#, "OO_ITEM::setLife")
 			MEMBER("life", _this);
 		};
