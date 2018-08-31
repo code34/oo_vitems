@@ -13,7 +13,7 @@ CLASS("oo_UI_VITEMS")
 	PRIVATE UI_VARIABLE("control", "UI_VITEMS_TITLE");
 	PRIVATE UI_VARIABLE("control", "UI_VITEMS_USE");
 	PRIVATE UI_VARIABLE("display", "Display");
-	PRIVATE VARIABLE("code", "inventory");
+	PRIVATE VARIABLE("code", "container");
 	PRIVATE VARIABLE("string", "mode");
 
 	PUBLIC FUNCTION("display", "constructor"){
@@ -26,10 +26,10 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("OOP_StructuredText_105", _this displayCtrl 106);
 		MEMBER("OOP_SubLayer_101_0", _this displayCtrl 101);
 		MEMBER("UI_VITEMS_EXIT", _this displayCtrl 103);
-		MEMBER("UI_VITEMS_SWITCH", _this displayCtrl 108);
-		MEMBER("UI_VITEMS_TAKE", _this displayCtrl 107);
+		MEMBER("UI_VITEMS_SWITCH", _this displayCtrl 109);
+		MEMBER("UI_VITEMS_TAKE", _this displayCtrl 108);
 		MEMBER("UI_VITEMS_TITLE", _this displayCtrl 104);
-		MEMBER("UI_VITEMS_USE", _this displayCtrl 109);
+		MEMBER("UI_VITEMS_USE", _this displayCtrl 107);
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
@@ -49,16 +49,22 @@ CLASS("oo_UI_VITEMS")
 
 	PUBLIC FUNCTION("", "refresh_LISTBOX_VITEMS") {
 		lbClear MEMBER("LISTBOX_VITEMS", nil);
-		_content = "getContentSerialize" call MEMBER("inventory", nil);
+		private _name = "getName" call MEMBER("container", nil);
+		private _weight = "countWeight" call MEMBER("container", nil);
+		private _size = "countSize" call MEMBER("container", nil);
+		private _limitsize = "getLimitSize" call MEMBER("container", nil);
+		private _limitweight = "getLimitWeight" call MEMBER("container", nil);
+		MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format["%1 inventory | Size: %2/%3 | Weight: %4/%5 Kg", _name, _size, _limitsize, _weight, _limitweight];
+		_content = "getContent" call MEMBER("container", nil);
 		{
 			MEMBER("LISTBOX_VITEMS", nil) lbAdd (_x select 0);
 		}foreach _content;
 		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
-		private _index =  (("countSize" call MEMBER("inventory", nil)) - 1);
+		private _index =  (("countSize" call MEMBER("container", nil)) - 1);
 		MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _index;
 		//private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if (_index > -1) then {
-			_content = ("getContentSerialize" call MEMBER("inventory", nil)) select _index;
+			_content = ("getContent" call MEMBER("container", nil)) select _index;
 			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
 		};
 	};
@@ -71,9 +77,9 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS") {
 		private _control = _this select 0;
 		private _index = _this select 1;
-		if(_index >= ("countSize" call MEMBER("inventory", nil))) exitWith {};
+		if(_index >= ("countSize" call MEMBER("container", nil))) exitWith {};
 		if(_index > -1) then {
-			_content = ("getContentSerialize" call MEMBER("inventory", nil)) select _index;
+			_content = ("getContent" call MEMBER("container", nil)) select _index;
 			//"name", "description", "category", "price","weight", "owner", "life"
 			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
 		};
@@ -82,10 +88,9 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_USE") {
 		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS", nil);
 		if(_index > -1) then {
-			private _content = "getContent" call MEMBER("inventory", nil);
-			private _item = _content select _index;
-			private _code = "getUsecode" call _item;
-			[MEMBER("inventory", nil), _item, _index] call (missionNamespace getVariable _code);
+			private _content = "getContent" call MEMBER("container", nil);
+			private _code = (_content select _index) select 7;
+			[_content, _index] call _code;
 		};
 	};
 
@@ -93,17 +98,17 @@ CLASS("oo_UI_VITEMS")
 		private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if(_index > -1) then {
 			if (MEMBER("mode", nil) isEqualTo "object") then {
-				private _inventory = player getVariable "inventory";
+				private _container = ["new", player] call OO_CONTAINER;
 				MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
-				private _item = ["getItem", _index] call MEMBER("inventory", nil);
-				["addItem", _item] call _inventory;
+				private _item = ["getItem", _index] call MEMBER("container", nil);
+				["addItem", _item] call _container;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
 			} else {
 				if (!isNull cursorObject) then {
-					private _inventory = cursorObject getVariable "inventory";
+					private _container = ["new", cursorObject] call OO_CONTAINER;
 					MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
-					private _item = ["getItem", _index] call MEMBER("inventory", nil);
-					["addItem", _item] call _inventory;
+					private _item = ["getItem", _index] call MEMBER("container", nil);
+					["addItem", _item] call _container;
 					MEMBER("refresh_LISTBOX_VITEMS", nil);
 				};
 			};
@@ -114,30 +119,17 @@ CLASS("oo_UI_VITEMS")
 		private _mode = _this;
 		switch (_mode) do { 
 			case "object" : {
-				_inventory = cursorObject getVariable["inventory",""];
-				if (_inventory isEqualTo "") then {
-					_inventory = "new" call OO_CONTAINER;
-				};
-				_weight = "countWeight" call _inventory;
-				_size = "countSize" call _inventory;
-				_limitsize = "getLimitSize" call _inventory;
-				_limitweight = "getLimitWeight" call _inventory;
-				MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format["Object inventory | size: %1/%2 | weight: %3/%4", _size, _limitsize, _weight, _limitweight];
+				private _container = ["new", cursorObject] call OO_CONTAINER;
 				MEMBER("UI_VITEMS_TITLE", nil) ctrlSetBackgroundColor [0.88,0.6,0,1];
 				MEMBER("UI_VITEMS_TAKE", nil) ctrlSetText "Take";
-				MEMBER("inventory", _inventory);
+				MEMBER("container", _container);
 				MEMBER("mode", "object");
 			}; 
 			default {
-				_inventory = player getVariable["inventory",""];
-				_weight = "countWeight" call _inventory;
-				_size = "countSize" call _inventory;
-				_limitsize = "getLimitSize" call _inventory;
-				_limitweight = "getLimitWeight" call _inventory;
-				MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format ["%1 inventory | size: %2/%3 | weight: %4/%5", name player, _size, _limitsize, _weight, _limitweight];
+				private _container = ["new", player] call OO_CONTAINER;
 				MEMBER("UI_VITEMS_TITLE", nil) ctrlSetBackgroundColor [0.1,0.38,0.04,1];
 				MEMBER("UI_VITEMS_TAKE", nil) ctrlSetText "Drop";
-				MEMBER("inventory", _inventory);
+				MEMBER("container", _container);
 				MEMBER("mode", "player");
 			};
 		};
