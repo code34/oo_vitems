@@ -18,19 +18,10 @@
 
 	//15203 cutText ["Loading...","BLACK FADED", 1000];
 
-	call compile preprocessFileLineNumbers "bme\oo_bme.sqf";
-	call compile preprocessFileLineNumbers "vitems\oo_item.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_manager.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_vitems.sqf";
 
-	// Initialization
-	bmeclient = "new" call OO_BME;
-	private _result = false;
-	while { _result isEqualTo false} do { 
-		_result= ["remoteCall", ["qwenchIsAlive", "" , 2, false]] call bmeclient;
-		sleep 0.1;
-	};
 	15203 cutText ["","PLAIN", 0];
 
 	// Create the inventory of player

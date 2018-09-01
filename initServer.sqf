@@ -16,8 +16,6 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	call compile preprocessFileLineNumbers "bme\oo_bme.sqf";
-	call compile preprocessFileLineNumbers "vitems\oo_item.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_manager.sqf";
 
@@ -64,5 +62,3 @@
 
 	_figurine = ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",90, ""];
 	["addItem", _figurine] call _inventory4;
-
-	qwenchIsAlive = {true;};
