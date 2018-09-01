@@ -26,6 +26,6 @@
 
 	// Create the inventory of player
 	_inventory = ["new", player] call OO_CONTAINER;
-	["setProperties", 	[player, name player,40,40]] call _inventory;
+	["setProperties", 	[name player,40,40]] call _inventory;
 
 	_actionID = player addAction ["Inventory", "actions\listinventory.sqf"];
