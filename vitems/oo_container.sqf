@@ -39,56 +39,54 @@
 		// Return the 3d object container
 		PUBLIC FUNCTION("","getObject") {
 			DEBUG(#, "OO_CONTAINER::getObject")
-			MEMBER("getProperties", nil) select 0;
+			MEMBER("object", nil);
 		};
 
 		// Set the 3d object container
 		PUBLIC FUNCTION("object","setObject") {
 			DEBUG(#, "OO_CONTAINER::setObject")
-			private _content = MEMBER("getProperties", nil);
-			_content set[0, _this];
-			MEMBER("setProperties", _content);
+			MEMBER("object", _this);
 		};
 
 		// Return the name of container
 		PUBLIC FUNCTION("","getName") {
 			DEBUG(#, "OO_CONTAINER::getName")
-			MEMBER("getProperties", nil) select 1;
+			MEMBER("getProperties", nil) select 0;
 		};
 
 		// Return the name of container
 		PUBLIC FUNCTION("string","setName") {
 			DEBUG(#, "OO_CONTAINER::setName")
 			private _content = MEMBER("getProperties", nil);
-			_content set[1, _this];
+			_content set[0, _this];
 			MEMBER("setProperties", _content);
 		};
 
 		// Return the limit size of container
 		PUBLIC FUNCTION("","getLimitSize") {
 			DEBUG(#, "OO_CONTAINER::getLimitSize")
-			MEMBER("getProperties", nil) select 2;
+			MEMBER("getProperties", nil) select 1;
 		};
 
 		// Set the limit size of container
 		PUBLIC FUNCTION("scalar","setLimitSize") {
 			DEBUG(#, "OO_CONTAINER::setLimitSize")
 			private _content = MEMBER("getProperties", nil);
-			_content set[2, _this];
+			_content set[1, _this];
 			MEMBER("setProperties", _content);
 		};
 
 		// Return the limit weight of container
 		PUBLIC FUNCTION("","getLimitWeight") {
 			DEBUG(#, "OO_CONTAINER::getLimitWeight")
-			MEMBER("getProperties", nil) select 3;
+			MEMBER("getProperties", nil) select 2;
 		};
 
 		// Set the limit weight of container
 		PUBLIC FUNCTION("scalar","setLimitWeight") {
 			DEBUG(#, "OO_CONTAINER::setLimitWeight")
 			private _content = MEMBER("getProperties", nil);
-			_content set[3, _this];
+			_content set[2, _this];
 			MEMBER("setProperties", _content);
 		};
 
@@ -117,7 +115,7 @@
 		// Get the properties of container with an array
 		PUBLIC FUNCTION("","getProperties") {
 			DEBUG(#, "OO_CONTAINER::getProperties")
-			MEMBER("object", nil) getVariable ["properties", []];
+			MEMBER("object", nil) getVariable ["properties", ["",0,0]];
 		};
 
 		// Serialize container + content
