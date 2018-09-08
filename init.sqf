@@ -21,6 +21,7 @@
 	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_manager.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_vitems.sqf";
+	call compile preprocessFileLineNumbers "gui\oo_UI_loading.sqf";
 
 	15203 cutText ["","PLAIN", 0];
 
