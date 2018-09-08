@@ -62,7 +62,9 @@ CLASS("oo_UI_VITEMS")
 		}foreach _content;
 		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
 		private _index =  (("countSize" call MEMBER("container", nil)) - 1);
-		MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _index;
+		if((lbCurSel MEMBER("LISTBOX_VITEMS", nil)) > _index) then {
+			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _index;
+		};
 		//private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if (_index > -1) then {
 			_content = ("getContent" call MEMBER("container", nil)) select _index;
@@ -90,8 +92,21 @@ CLASS("oo_UI_VITEMS")
 		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS", nil);
 		if(_index > -1) then {
 			private _content = "getContent" call MEMBER("container", nil);
-			private _code = (_content select _index) select 7;
-			[_content, _index] call _code;
+			private _object = _content select _index;
+			private _code = _object select 7;
+			private _durability = _object select 6;
+			if !(_durability isEqualTo 0 ) then {
+				if(_durability > -1) then { _durability = _durability - 1;	};
+				if !(_durability isEqualTo 0 ) then {
+					_object set [6, _durability];
+					_content set[_index, _object];
+				} else {
+					_content deleteAt _index;
+				};
+				["setContent", _content] call MEMBER("container", nil);
+				[_content, _index] call _code;
+				MEMBER("refresh_LISTBOX_VITEMS", nil);
+			};
 		};
 	};
 
