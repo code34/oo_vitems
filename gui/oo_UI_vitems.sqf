@@ -64,8 +64,9 @@ CLASS("oo_UI_VITEMS")
 		private _index =  (("countSize" call MEMBER("container", nil)) - 1);
 		if((lbCurSel MEMBER("LISTBOX_VITEMS", nil)) > _index) then {
 			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _index;
+		} else {
+			_index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		};
-		//private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if (_index > -1) then {
 			_content = ("getContent" call MEMBER("container", nil)) select _index;
 			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
