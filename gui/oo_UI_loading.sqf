@@ -21,7 +21,7 @@ CLASS("oo_loadingscreen")
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
-
+		MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
 	};
 
 	PUBLIC FUNCTION("", "incProgressBar"){

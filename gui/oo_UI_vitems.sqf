@@ -33,6 +33,7 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
+		MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
 		if (player distance cursorObject > 3) then {
 			MEMBER("setMode", "player");
 			MEMBER("UI_VITEMS_SWITCH", nil) ctrlShow false;
