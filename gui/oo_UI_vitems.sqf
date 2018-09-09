@@ -112,7 +112,7 @@ CLASS("oo_UI_VITEMS")
 					_content deleteAt _index;
 				};
 				["setContent", _content] call MEMBER("container", nil);
-				[_content, _index] call _code;
+				("getObject" call MEMBER("container", nil)) call _code;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
 			};
 		};

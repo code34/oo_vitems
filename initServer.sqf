@@ -54,7 +54,8 @@
 	["addItem", _ak56] call _inventory2;
 	["addItem", _gpstracer] call _inventory2;
 
-	_wheel = ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",1, {}];
+	_wheelusecode = { _this setDamage 0; };
+	_wheel = ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",1, _wheelusecode];
 	_wrench = ["Adjustable wrench","a wrench that allows you to make the most basic repairs","tools",2,1,"Unknown",10, {}];
 
 	["addItem", _wheel] call _inventory3;
