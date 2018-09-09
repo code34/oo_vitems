@@ -67,7 +67,7 @@
 	_c4usecode = {
 		hint "C4 was armed";
 		_c4 = "DemoCharge_Remote_Ammo_Scripted" createVehicle position _this;
-		_c4 attachTo [_this, [0,0,0.5]];
+		_c4 attachTo [_this, [0,0,0]];
 		_c4 spawn {
 			sleep 10;
 			_this setDamage 1;
