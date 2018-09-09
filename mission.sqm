@@ -5,27 +5,27 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=1;
+	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=14;
+		nextID=15;
 	};
 	class Camera
 	{
-		pos[]={4419.3867,11.254727,1201.8611};
-		dir[]={0.86714011,-0.45229521,-0.20870176};
-		up[]={0.43974146,0.89185542,-0.10583651};
-		aside[]={-0.23400259,-5.6745921e-007,-0.97226936};
+		pos[]={4426.5571,11.254727,1198.0492};
+		dir[]={0.78101462,-0.47040474,0.41085631};
+		up[]={0.41631919,0.88243377,0.21900634};
+		aside[]={0.46558315,-5.3826079e-007,-0.88504362};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"A3_Props_F_Orange_Humanitarian_Supplies",
-	"A3_Structures_F_Wrecks",
 	"A3_Props_F_Orange_Furniture",
 	"A3_Structures_F_Heli_Furniture",
-	"A3_Characters_F_Exp_Civil"
+	"A3_Characters_F_Exp_Civil",
+	"A3_Soft_F_Exp_LSV_01"
 };
 class AddonsMetaData
 {
@@ -41,22 +41,22 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="A3_Structures_F_Wrecks";
-			name="Arma 3 - Vehicle Wrecks";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item2
-		{
 			className="A3_Structures_F_Heli";
 			name="Arma 3 Helicopters - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item3
+		class Item2
 		{
 			className="A3_Characters_F_Exp";
 			name="Arma 3 Apex - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item3
+		{
+			className="A3_Soft_F_Exp";
+			name="Arma 3 Apex - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -110,22 +110,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={4435.312,5.8460236,1203.6121};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				name="uaz";
-			};
-			id=7;
-			type="Land_Wreck_UAZ_F";
-		};
-		class Item2
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={4426.644,5.780499,1204.526};
 			};
 			side="Empty";
@@ -137,7 +121,7 @@ class Mission
 			id=8;
 			type="Land_OfficeCabinet_02_F";
 		};
-		class Item3
+		class Item2
 		{
 			dataType="Object";
 			class PositionInfo
@@ -153,7 +137,7 @@ class Mission
 			id=9;
 			type="Land_Workbench_01_F";
 		};
-		class Item4
+		class Item3
 		{
 			dataType="Group";
 			side="Civilian";
@@ -224,7 +208,7 @@ class Mission
 			};
 			id=10;
 		};
-		class Item5
+		class Item4
 		{
 			dataType="Group";
 			side="Civilian";
@@ -294,6 +278,23 @@ class Mission
 			{
 			};
 			id=12;
+		};
+		class Item5
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4434.6582,7.1761513,1202.1909};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				init="this sethit [""wheel_1_1_steering"", 1];";
+				name="uaz";
+			};
+			id=14;
+			type="B_CTRG_LSV_01_light_F";
 		};
 	};
 };
