@@ -32,11 +32,11 @@
 	["setProperties", 	["Workbench",100,100]] call _inventory4;
 
 	// create new items
-	_potatoe = ["Potatoe","A vulgar potato damaged","food",2,0.5,"Captain_A",1, true];
-	_coin = ["Coin","A XX century coin","money",5,0.1,"Food MetalX",-1, true];
+	_potatoe = ["Potatoe","A vulgar potato damaged","food",2,0.5,"Captain_A",1, {true}];
+	_coin = ["Coin","A XX century coin","money",5,0.1,"Food MetalX",-1, {true}];
 	_bottleusecode = { hint "You drink all the bottle. You fill very sick and finaly you die."; player setDamage 1;true;};
 	_bottle = ["Bottle","An empty bottle","object",1,0.3,"Redcolision41",1, _bottleusecode];
-	_duck = ["Duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",-1, true];
+	_duck = ["Duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",5, {true}];
 	_lighterusecode = { skipTime 12;true;};
 	_lighter = ["Lighter", "a lighter that will allow you to light campfires quickly. This object is not waterproof","object",5,0.1,"LyLKaay",5, _lighterusecode];
 
@@ -46,9 +46,9 @@
 	["addItem", _duck] call _inventory;
 	["addItem", _lighter] call _inventory;
 
-	_ak56 = ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",-1, true];
-	_gpstracer = ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",-1, true];
-	_tincan = ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",2, true];
+	_ak56 = ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",-1, {true}];
+	_gpstracer = ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",-1, {true}];
+	_tincan = ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",2, {true}];
 
 	["addItem", _tincan] call _inventory2;
 	["addItem", _ak56] call _inventory2;
@@ -58,11 +58,25 @@
 	_wheel = ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",1, _wheelusecode];
 	_wrenchusecode = { if (_this isKindOf "Car") then { hint "Repairing ..."; player playActionNow "PutDown"; _this setDamage 0; true;} else { false;};};
 	_wrench = ["Adjustable wrench","a wrench that allows you to make the most basic repairs","tools",2,1,"Unknown",10, _wrenchusecode];
+	_mission = ["Mission plan #1425146", "Secret Defense - This information should not be disclosed to the enemy - Bring in sector c124535 the contents of this briefcase. Ask for colonel Jackson Bro", "paper", 0,0.1, "HQ",-1, {true}];
+	
+	_briefcaseusecode = {
+		if((_this getVariable ["name", ""]) isEqualTo "jacksonbro") then {
+			hint "Thank you Soldier! You just save the world";
+			true;
+		} else {
+			hint "You tried to open the briefcase but destroy the content";
+			true;
+		};
+	};
+	_briefcase = ["A little briefcase", "a small black leather briefcase quite light. It is locked with an electronic code.It is impossible to open it without destroying its contents","object",0,1,"Unknown", 1, _briefcaseusecode];
 
 	["addItem", _wheel] call _inventory3;
 	["addItem", _wrench] call _inventory3;
+	["addItem", _mission] call _inventory3;
+	["addItem", _briefcase] call _inventory3;
 
-	_figurine = ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",-1, true];
+	_figurine = ["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","art",35,2,"Netarion",-1, {true}];
 	
 	_c4usecode = {
 		hint "C4 was armed";
