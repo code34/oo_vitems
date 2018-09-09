@@ -61,14 +61,21 @@ CLASS("oo_UI_VITEMS")
 			MEMBER("LISTBOX_VITEMS", nil) lbAdd (_x select 0);
 		}foreach _content;
 		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
-		private _index =  (("countSize" call MEMBER("container", nil)) - 1);
-		if((lbCurSel MEMBER("LISTBOX_VITEMS", nil)) > _index) then {
-			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _index;
-		} else {
-			_index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
+		private _indexlast =  (("countSize" call MEMBER("container", nil)) - 1);
+		private _indexselected = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
+
+		if(_indexselected > _indexlast) then {
+			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _indexlast;
+			_indexselected = _indexlast;
 		};
-		if (_index > -1) then {
-			_content = ("getContent" call MEMBER("container", nil)) select _index;
+
+		if((_indexselected isEqualTo -1) && (_indexlast > -1)) then {
+			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel 0;
+			_indexselected = 0;
+		};
+
+		if (_indexselected > -1) then {
+			_content = ("getContent" call MEMBER("container", nil)) select _indexselected;
 			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
 		};
 	};
