@@ -33,7 +33,7 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
-		MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
+		//MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
 		if (player distance cursorObject > 3) then {
 			MEMBER("setMode", "player");
 			MEMBER("UI_VITEMS_SWITCH", nil) ctrlShow false;
@@ -104,15 +104,17 @@ CLASS("oo_UI_VITEMS")
 			private _code = _object select 7;
 			private _durability = _object select 6;
 			if !(_durability isEqualTo 0 ) then {
-				if(_durability > -1) then { _durability = _durability - 1;	};
-				if !(_durability isEqualTo 0 ) then {
-					_object set [6, _durability];
-					_content set[_index, _object];
-				} else {
-					_content deleteAt _index;
+				private _result = ("getObject" call MEMBER("container", nil)) call _code;
+				if(_result) then {
+					if(_durability > -1) then { _durability = _durability - 1;	};
+					if !(_durability isEqualTo 0 ) then {
+						_object set [6, _durability];
+						_content set[_index, _object];
+					} else {
+						_content deleteAt _index;
+					};
+					["setContent", _content] call MEMBER("container", nil);
 				};
-				["setContent", _content] call MEMBER("container", nil);
-				("getObject" call MEMBER("container", nil)) call _code;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
 			};
 		};
