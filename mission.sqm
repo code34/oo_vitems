@@ -12,10 +12,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={4426.5571,11.254727,1198.0492};
-		dir[]={0.78101462,-0.47040474,0.41085631};
-		up[]={0.41631919,0.88243377,0.21900634};
-		aside[]={0.46558315,-5.3826079e-007,-0.88504362};
+		pos[]={4424.6831,7.7705112,1194.5061};
+		dir[]={0.62963039,-0.36706778,0.68483895};
+		up[]={0.24845414,0.93015659,0.27023941};
+		aside[]={0.73622304,-8.9374953e-007,-0.67686546};
 	};
 };
 binarizationWanted=0;
@@ -155,6 +155,9 @@ class Mission
 					flags=7;
 					class Attributes
 					{
+						health=0.27668291;
+						init="this setVariable[""name"", ""jacksonbro""]; this setDamage 0.9;";
+						name="jacksonbro";
 						isPlayable=1;
 					};
 					id=11;

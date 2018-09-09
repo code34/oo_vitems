@@ -49,10 +49,14 @@
 	_ak56 = ["AK56","A strange weapon straight from the future probably also become useless with the advent of intelligent drones","Weapon",30,1,"Unknown",-1, {true}];
 	_gpstracer = ["GPS tracer","A tracer gps that could be useful to us. The source of energy is a mystery.","tools",20,0.1,"Unknown",-1, {true}];
 	_tincan = ["Tin can Maxigaz","All you need protein to spend a good afternoon in the sun","food",10,0.2,"Unknown",2, {true}];
+	
+	_bandageusecode = { _this setDamage ((getDammage _this) - 0.5);true;};
+	_bandage = ["A cloth bandage","A cloth bandage that will allow you to stop bleeding quickly","food",0,0.1,"Unknown",1, _bandageusecode];
 
 	["addItem", _tincan] call _inventory2;
 	["addItem", _ak56] call _inventory2;
 	["addItem", _gpstracer] call _inventory2;
+	["addItem", _bandage] call _inventory2;
 
 	_wheelusecode = { if (_this isKindOf "Car") then { hint "You repair the Wheel"; player playActionNow "PutDown"; _this setDamage 0; true;} else { false;};};
 	_wheel = ["Spare wheel","a deflated spare wheel","tools",5,10,"Unknown",1, _wheelusecode];
