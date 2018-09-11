@@ -26,10 +26,10 @@
 	_manager = "new" call OO_MANAGER;
 
 	// proposition
-	["setProperties", 	["Box",100,100]] call _inventory;
-	["setProperties", 	["Wardrobe",100,100]] call _inventory2;
-	["setProperties", 	["Uaz",100,100]] call _inventory3;
-	["setProperties", 	["Workbench",100,100]] call _inventory4;
+	["setProperties", 	["Box",10,20]] call _inventory;
+	["setProperties", 	["Wardrobe",50,60]] call _inventory2;
+	["setProperties", 	["Uaz",40,100]] call _inventory3;
+	["setProperties", 	["Workbench",10,20]] call _inventory4;
 
 	// create new items
 	_potatoe = ["Potatoe","A vulgar potato damaged","food",2,0.5,"Captain_A",1, {true}];
@@ -37,6 +37,7 @@
 	_bottleusecode = { hint "You drink all the bottle. You fill very sick and finaly you die."; player setDamage 1;true;};
 	_bottle = ["Bottle","An empty bottle","object",1,0.3,"Redcolision41",1, _bottleusecode];
 	_duck = ["Duck","a duck really alive with 3 legs","animal",10,5,"Bloodycoal",5, {true}];
+	
 	_lighterusecode = { skipTime 12;true;};
 	_lighter = ["Lighter", "a lighter that will allow you to light campfires quickly. This object is not waterproof","object",5,0.1,"LyLKaay",5, _lighterusecode];
 
