@@ -24,7 +24,6 @@
 		PRIVATE VARIABLE("code","this");
 		PRIVATE VARIABLE("object","object");
 
-
 		PUBLIC FUNCTION("object","constructor") { 
 			DEBUG(#, "OO_CONTAINER::constructor")
 			MEMBER("object", _this);
@@ -115,7 +114,16 @@
 		// Get the properties of container with an array
 		PUBLIC FUNCTION("","getProperties") {
 			DEBUG(#, "OO_CONTAINER::getProperties")
-			MEMBER("object", nil) getVariable ["properties", ["",0,0]];
+			private _object = MEMBER("object", nil);
+			private _properties = _object getVariable ["properties",[]];
+			if (_properties isEqualTo []) then {
+				_stuff = "new" call OO_RANDOMSTUFF;
+				_properties = ["getProperties", _object] call _stuff;
+				MEMBER("setProperties", _properties);
+				_content = "getRandomStuff" call _stuff;
+				MEMBER("setContent", _content);
+			};
+			_properties;
 		};
 
 		// Serialize container + content
