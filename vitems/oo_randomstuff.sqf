@@ -51,7 +51,8 @@
 			private _properties = [];
 			switch (true) do {
 				case (_object isKindOf "House_F") : { _properties = ["Building", round(sizeOf (typeof _object))*10, round(sizeOf (typeof _object))*100];};
-				case (_object isKindOf "Men") : { _properties = ["Men", 40, 40]; };
+				case (_object isKindOf "Car") : { _properties = ["Vehicle", round(sizeOf (typeof _object))*5, round(sizeOf (typeof _object))*10];};
+				case (_object isKindOf "Man") : { _properties = [name _object, 5, 10]; };
 				case (_object isKindOf "Things") : { _properties = ["Object", round(sizeOf (typeof _object)), round(sizeOf (typeof _object))];};
 				default {	_properties = ["", 0,0];};
 			};
