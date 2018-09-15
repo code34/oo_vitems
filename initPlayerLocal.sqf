@@ -25,8 +25,4 @@
 
 	15203 cutText ["","PLAIN", 0];
 
-	// Create the inventory of player
-	_inventory = ["new", player] call OO_CONTAINER;
-	["setProperties", 	[name player,40,40]] call _inventory;
-
 	_actionID = player addAction ["Inventory", "actions\listinventory.sqf"];
