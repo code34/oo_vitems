@@ -8,14 +8,14 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=15;
+		nextID=18;
 	};
 	class Camera
 	{
-		pos[]={4424.2964,7.7705112,1207.5573};
-		dir[]={0.67107499,-0.32385674,-0.66706097};
-		up[]={0.22971241,0.94606042,-0.22833858};
-		aside[]={-0.70504206,-4.961621e-007,-0.70929188};
+		pos[]={4423.9116,13.770719,1185.3486};
+		dir[]={0.32006192,-0.41644019,0.85108131};
+		up[]={0.14659356,0.9091171,0.38980895};
+		aside[]={0.93609023,-9.5727592e-007,-0.35202548};
 	};
 };
 binarizationWanted=0;
@@ -25,13 +25,16 @@ addons[]=
 	"A3_Props_F_Orange_Furniture",
 	"A3_Structures_F_Heli_Furniture",
 	"A3_Characters_F_Exp_Civil",
-	"A3_Soft_F_Exp_LSV_01"
+	"A3_Soft_F_Exp_LSV_01",
+	"A3_Structures_F_Argo_Civilian_House_Small01",
+	"A3_Structures_F_Argo_Civilian_Stone_House_Big_01",
+	"A3_Structures_F_Argo_Civilian_Stone_Shed_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=4;
+		items=5;
 		class Item0
 		{
 			className="A3_Props_F_Orange";
@@ -57,6 +60,13 @@ class AddonsMetaData
 		{
 			className="A3_Soft_F_Exp";
 			name="Arma 3 Apex - Unarmored Land Vehicles";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item4
+		{
+			className="A3_Structures_F_Argo";
+			name="Arma 3 Malden - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -88,7 +98,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=6;
+		items=9;
 		class Item0
 		{
 			dataType="Object";
@@ -298,6 +308,51 @@ class Mission
 			};
 			id=14;
 			type="B_CTRG_LSV_01_light_F";
+		};
+		class Item6
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4443.1523,6.3420548,1218.9948};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=15;
+			type="Land_i_House_Small_01_b_blue_F";
+		};
+		class Item7
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4426.3984,6.8400154,1216.5038};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=16;
+			type="Land_i_Stone_House_Big_01_b_clay_F";
+		};
+		class Item8
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4418.4585,5.3619452,1200.7209};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=17;
+			type="Land_i_Stone_Shed_01_b_white_F";
 		};
 	};
 };
