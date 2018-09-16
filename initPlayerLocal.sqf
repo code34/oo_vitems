@@ -16,13 +16,12 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	//15203 cutText ["Loading...","BLACK FADED", 1000];
-
 	call compile preprocessFileLineNumbers "vitems\oo_container.sqf";
 	call compile preprocessFileLineNumbers "vitems\oo_randomstuff.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_vitems.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_loading.sqf";
 
-	15203 cutText ["","PLAIN", 0];
+	_inventory = ["new", player] call OO_CONTAINER;
+	["setProperties", [name player,5,10]] call _inventory;
 
 	_actionID = player addAction ["Inventory", "actions\listinventory.sqf"];
