@@ -118,9 +118,9 @@
 			private _properties = _object getVariable ["properties",[]];
 			if (_properties isEqualTo []) then {
 				_stuff = "new" call OO_RANDOMSTUFF;
-				_properties = ["getProperties", _object] call _stuff;
+				_properties = ["createProperties", _object] call _stuff;
 				MEMBER("setProperties", _properties);
-				_content = "getRandomStuff" call _stuff;
+				_content = ["getRandomContent", _object] call _stuff;
 				MEMBER("setContent", _content);
 			};
 			_properties;
