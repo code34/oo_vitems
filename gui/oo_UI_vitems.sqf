@@ -123,6 +123,7 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_TAKE") {
 		private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
 		if(_index > -1) then {
+			// if object inventory is opened
 			if (MEMBER("mode", nil) isEqualTo "object") then {
 				private _container = ["new", player] call OO_CONTAINER;
 				MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
@@ -130,6 +131,7 @@ CLASS("oo_UI_VITEMS")
 				["addItem", _item] call _container;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
 			} else {
+			// if inventory of player is opened
 				if (!isNull cursorObject) then {
 					private _container = ["new", cursorObject] call OO_CONTAINER;
 					MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
