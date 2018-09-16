@@ -23,31 +23,29 @@
 	CLASS("OO_RANDOMSTUFF")
 		PRIVATE VARIABLE("code","this");
 
-		PRIVATE VARIABLE("array","object");
-		PRIVATE VARIABLE("array","tool");
-		PRIVATE VARIABLE("array","military");
-		PRIVATE VARIABLE("array","food");
+		PRIVATE STATIC_VARIABLE("array","military");
+		PRIVATE STATIC_VARIABLE("array","food");
 		PRIVATE STATIC_VARIABLE("array", "stuff");
 
 		PUBLIC FUNCTION("","constructor") { 
 			DEBUG(#, "OO_RANDOMSTUFF::constructor")
-			MEMBER("object", []);
-			MEMBER("tool", []);
-			MEMBER("military", []);
-			MEMBER("food", []);
 		};
 
 		PUBLIC FUNCTION("array","setStuff") {
 			MEMBER("stuff", _this);
 		};
 
-		PUBLIC FUNCTION("","getThis") {
-			DEBUG(#, "OO_RANDOMSTUFF::getThis")
-			MEMBER("this", nil);
+		PUBLIC FUNCTION("array","setFood") {
+			MEMBER("food", _this);
 		};
 
-		PUBLIC FUNCTION("object","getProperties") {
-			DEBUG(#, "OO_RANDOMSTUFF::getProperties")
+		PUBLIC FUNCTION("array","setMilitary") {
+			MEMBER("military", _this);
+		};
+
+		// create default container properties according class of 3d object container
+		PUBLIC FUNCTION("object","createProperties") {
+			DEBUG(#, "OO_RANDOMSTUFF::createProperties")
 			private _properties = [];
 			switch (true) do {
 				case (_object isKindOf "House_F") : { _properties = ["Building", round(sizeOf (typeof _object))*10, round(sizeOf (typeof _object))*100];};
@@ -59,11 +57,25 @@
 			_properties;
 		};
 
-		PUBLIC FUNCTION("","getRandomStuff") {
-			DEBUG(#, "OO_RANDOMSTUFF::getRandomStuff")
+		// Create a random array of stuff/military/food
+		// according of probalities and 3d class object container
+		PUBLIC FUNCTION("object","getRandomContent") {
+			DEBUG(#, "OO_RANDOMSTUFF::getRandomContent")
 			private _result = [];
+			private _type = "";
 			for "_i" from 0 to round(random 3) step 1 do {
-				_entry = MEMBER("stuff",nil) deleteAt (random (count(MEMBER("stuff",nil)) - 1));
+				switch (true) do {
+					case (_object isKindOf "Car") : {
+						_type = ["stuff", "food", "military"] selectRandomWeighted [0.7,0.1,0.2];
+					};
+					case (_object isKindOf "House_F") : {
+						_type = ["stuff", "food", "military"] selectRandomWeighted [0.5,0.49,0.001];
+					};
+					default {
+						_type = ["stuff", "food", "military"] selectRandomWeighted [0.5,0.47,0.03];
+					};
+				};
+				_entry = MEMBER(_type,nil) deleteAt (random (count(MEMBER(_type,nil)) - 1));
 				_result pushBack _entry;
 			};
 			_result;
@@ -72,9 +84,5 @@
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_RANDOMSTUFF::deconstructor")
 			DELETE_VARIABLE("this");
-			DELETE_VARIABLE("object");
-			DELETE_VARIABLE("tool");
-			DELETE_VARIABLE("military");
-			DELETE_VARIABLE("food");
 		};
 	ENDCLASS;
