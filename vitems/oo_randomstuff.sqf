@@ -26,6 +26,7 @@
 		PRIVATE STATIC_VARIABLE("array","military");
 		PRIVATE STATIC_VARIABLE("array","food");
 		PRIVATE STATIC_VARIABLE("array", "stuff");
+		PRIVATE STATIC_VARIABLE("array", "tools");
 
 		PUBLIC FUNCTION("","constructor") { 
 			DEBUG(#, "OO_RANDOMSTUFF::constructor")
@@ -40,6 +41,10 @@
 		};
 
 		PUBLIC FUNCTION("array","setMilitary") {
+			MEMBER("military", _this);
+		};
+
+		PUBLIC FUNCTION("array","setTools") {
 			MEMBER("military", _this);
 		};
 
