@@ -56,7 +56,7 @@
 				case (_object isKindOf "House_F") : { _properties = ["Building", round(sizeOf (typeof _object))*10, round(sizeOf (typeof _object))*100];};
 				case (_object isKindOf "Car") : { _properties = ["Vehicle", round(sizeOf (typeof _object))*5, round(sizeOf (typeof _object))*10];};
 				case (_object isKindOf "Man") : { _properties = [name _object, 5, 10]; };
-				case (_object isKindOf "Things") : { _properties = ["Object", round(sizeOf (typeof _object)), round(sizeOf (typeof _object))];};
+				case (_object isKindOf "Thing") : { _properties = ["Thing", round(sizeOf (typeof _object))*3, round(sizeOf (typeof _object))*6];};
 				default {	_properties = ["", 0,0];};
 			};
 			_properties;
