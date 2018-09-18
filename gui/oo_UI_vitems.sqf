@@ -59,6 +59,7 @@ CLASS("oo_UI_VITEMS")
 		_content = "getContent" call MEMBER("container", nil);
 		{
 			MEMBER("LISTBOX_VITEMS", nil) lbAdd (_x select 0);
+			MEMBER("LISTBOX_VITEMS", nil) lbSetPicture [_forEachIndex, (_x select 8)];
 		}foreach _content;
 		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
 		private _indexlast =  (("countSize" call MEMBER("container", nil)) - 1);
