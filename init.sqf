@@ -35,7 +35,8 @@
 			["Lighter", "a lighter that will allow you to light campfires quickly. This object is not waterproof","stuff",5,0.1,"LyLKaay",5, _lighterusecode, "pictures\lighter.jpg"],
 			["A cloth bandage","A cloth bandage that will allow you to stop bleeding quickly","stuff",0,0.1,"Unknown",1, _bandageusecode, "pictures\bandage.jpg"],
 			["Adjustable wrench","a wrench that allows you to make the most basic repairs","stuff",2,1,"Unknown",10, _wrenchusecode, "pictures\wrench.jpg"],
-			["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","stuff",35,2,"Netarion",-1, {true}, "pictures\mia.jpg"]
+			["A figurine of mia kalifa","A figure of mia kalifa completely naked. She had, in all appearances, forgotten the whole epilation.","stuff",35,2,"Netarion",-1, {true}, "pictures\mia.jpg"],
+			["Antibiotic", "a box full of antibiotic in an acceptable state", "stuff", 1,0.1,"panics78",1, {true}, "pictures\antibiotic.jpg"]
 		];
 
 		_stuff = "new" call OO_RANDOMSTUFF;
