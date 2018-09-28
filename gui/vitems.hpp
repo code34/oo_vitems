@@ -50,21 +50,23 @@ class UI_VITEMS {
 							colorForeground[] = {0, 0.3, 0, 1};
 							tooltipColorText[] = {1, 1, 1, 1};
 						};
-						class LISTBOX_VITEMS_105: OOP_Listbox {
+						class LISTBOX_VITEMS_PROXIMITY_105: OOP_Listbox {
 							idc = 105;
 							x = 1.99594 * pixelGrid * pixelW;
 							y = 6.93333 * pixelGrid * pixelH;
 							w = 31.935 * pixelGrid * pixelW;
 							h = 45.0667 * pixelGrid * pixelH;
-							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS', _this] call UI_VITEMS;";
+							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
+							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
+							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
 						};
 						class OOP_StructuredText_105_106: OOP_StructuredText {
 							idc = 106;
 							x = 37.9228 * pixelGrid * pixelW;
-							y = 6.93333 * pixelGrid * pixelH;
+							y = 36.4 * pixelGrid * pixelH;
 							w = 59.8781 * pixelGrid * pixelW;
-							h = 45.0667 * pixelGrid * pixelH;
-							text = "text";
+							h = 15.6 * pixelGrid * pixelH;
+							text = "";
 						};
 						class UI_VITEMS_USE_107: OOP_Button {
 							idc = 107;
@@ -93,6 +95,16 @@ class UI_VITEMS {
 							text = "Switch";
 							action = "'btnAction_UI_VITEMS_SWITCH' call UI_VITEMS;";
 						};
+						class LISTBOX_VITEMS_CAPACITIES_110: OOP_Listbox {
+							idc = 110;
+							x = 37.9228 * pixelGrid * pixelW;
+							y = 6.93333 * pixelGrid * pixelH;
+							w = 29.9391 * pixelGrid * pixelW;
+							h = 27.7333 * pixelGrid * pixelH;
+							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
+							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
+							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
+						};
 					};
 				};
 			};
@@ -102,5 +114,5 @@ class UI_VITEMS {
 };
 
 /*
-["UI_VITEMS",10001,[[[["29.9391 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH","101.793 * pixelGrid * pixelW","58.9334 * pixelGrid * pixelH"],"","OOP_SubLayer_101_0","","OOP_SubLayer",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]],[[[["0.2515 * pixelGrid * pixelW","5.2 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH"],"","BACKGROUND_VITEMS","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.78],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["81.8334 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Exit","UI_VITEMS_EXIT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["0.2515 * pixelGrid * pixelW","0.182 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","5.018 * pixelGrid * pixelH"],"Inventory","UI_VITEMS_TITLE","","OOP_Text",true,[],[1,1,1,1],[0.1,0.38,0.04,1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["1.99594 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","31.935 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"","LISTBOX_VITEMS","","OOP_Listbox",true,["onLBSelChanged"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","59.8781 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"text","OOP_StructuredText_105","","OOP_StructuredText",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Use","UI_VITEMS_USE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["45.9066 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Take","UI_VITEMS_TAKE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["27.9431 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Switch","UI_VITEMS_SWITCH","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]]]
+["UI_VITEMS",10001,[[[["29.9391 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH","101.793 * pixelGrid * pixelW","58.9334 * pixelGrid * pixelH"],"","OOP_SubLayer_101_0","","OOP_SubLayer",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]],[[[["0.2515 * pixelGrid * pixelW","5.2 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH"],"","BACKGROUND_VITEMS","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.78],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["81.8334 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Exit","UI_VITEMS_EXIT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["0.2515 * pixelGrid * pixelW","0.182 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","5.018 * pixelGrid * pixelH"],"Inventory","UI_VITEMS_TITLE","","OOP_Text",true,[],[1,1,1,1],[0.1,0.38,0.04,1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["1.99594 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","31.935 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"","LISTBOX_VITEMS_PROXIMITY","","OOP_Listbox",true,["onLBSelChanged","onLBDrag","onLBDragging"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","36.4 * pixelGrid * pixelH","59.8781 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH"],"text","OOP_StructuredText_105","","OOP_StructuredText",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Use","UI_VITEMS_USE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["45.9066 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Take","UI_VITEMS_TAKE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["27.9431 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Switch","UI_VITEMS_SWITCH","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","29.9391 * pixelGrid * pixelW","27.7333 * pixelGrid * pixelH"],"","LISTBOX_VITEMS_CAPACITIES","","OOP_Listbox",true,["onLBSelChanged","onLBDrag","onLBDragging"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]]]
 */

@@ -2,7 +2,8 @@
 CLASS("oo_UI_VITEMS")
 
 	PRIVATE UI_VARIABLE("control", "BACKGROUND_VITEMS");
-	PRIVATE UI_VARIABLE("control", "LISTBOX_VITEMS");
+	PRIVATE UI_VARIABLE("control", "LISTBOX_VITEMS_CAPACITIES");
+	PRIVATE UI_VARIABLE("control", "LISTBOX_VITEMS_PROXIMITY");
 	PRIVATE UI_VARIABLE("control", "MainLayer");
 	PRIVATE UI_VARIABLE("control", "OOP_MainLayer_100");
 	PRIVATE UI_VARIABLE("control", "OOP_StructuredText_105");
@@ -21,7 +22,8 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("Display", _this);
 		MEMBER("MainLayer", _this displayCtrl 100);
 		MEMBER("BACKGROUND_VITEMS", _this displayCtrl 102);
-		MEMBER("LISTBOX_VITEMS", _this displayCtrl 105);
+		MEMBER("LISTBOX_VITEMS_CAPACITIES", _this displayCtrl 110);
+		MEMBER("LISTBOX_VITEMS_PROXIMITY", _this displayCtrl 105);
 		MEMBER("OOP_MainLayer_100", _this displayCtrl 100);
 		MEMBER("OOP_StructuredText_105", _this displayCtrl 106);
 		MEMBER("OOP_SubLayer_101_0", _this displayCtrl 101);
@@ -49,7 +51,7 @@ CLASS("oo_UI_VITEMS")
 	};
 
 	PUBLIC FUNCTION("", "refresh_LISTBOX_VITEMS") {
-		lbClear MEMBER("LISTBOX_VITEMS", nil);
+		lbClear MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
 		private _name = "getName" call MEMBER("container", nil);
 		private _weight = "countWeight" call MEMBER("container", nil);
 		private _size = "countSize" call MEMBER("container", nil);
@@ -58,26 +60,26 @@ CLASS("oo_UI_VITEMS")
 		MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format["%1 inventory | Size: %2/%3 | Weight: %4/%5 Kg", _name, _size, _limitsize, _weight, _limitweight];
 		_content = "getContent" call MEMBER("container", nil);
 		{
-			MEMBER("LISTBOX_VITEMS", nil) lbAdd (_x select 0);
-			MEMBER("LISTBOX_VITEMS", nil) lbSetPicture [_forEachIndex, (_x select 8)];
+			MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbAdd (_x select 0);
+			MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetPicture [_forEachIndex, (_x select 6)];
 		}foreach _content;
 		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
 		private _indexlast =  (("countSize" call MEMBER("container", nil)) - 1);
-		private _indexselected = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
+		private _indexselected = lbCurSel MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
 
 		if(_indexselected > _indexlast) then {
-			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel _indexlast;
+			MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel _indexlast;
 			_indexselected = _indexlast;
 		};
 
 		if((_indexselected isEqualTo -1) && (_indexlast > -1)) then {
-			MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel 0;
+			MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel 0;
 			_indexselected = 0;
 		};
 
 		if (_indexselected > -1) then {
 			_content = ("getContent" call MEMBER("container", nil)) select _indexselected;
-			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
+			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
 		};
 	};
 
@@ -86,30 +88,53 @@ CLASS("oo_UI_VITEMS")
 	*		The selection in a listbox is changed. The left mouse button has been released and the new selection is fully made.
 	*		Returns the control and the selected element index.
 	*/
-	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS") {
+	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS_PROXIMITY") {
 		private _control = _this select 0;
 		private _index = _this select 1;
 		if(_index >= ("countSize" call MEMBER("container", nil))) exitWith {};
 		if(_index > -1) then {
 			_content = ("getContent" call MEMBER("container", nil)) select _index;
 			//"name", "description", "category", "price","weight", "owner", "life"
-			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1<br/>Price: %2€<br/>Weight: %3Kg<br/>Owner: %4<br/>Durability: %5%<br/>Description: %6<br/>", _content select 2,_content select 3,_content select 4,_content select 5, _content select 6, _content select 1];
+			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
 		};
 	};
 
+	/*
+	*	onLBDrag:
+	*		Drag & drop operation started.
+	*		Returns the control and the selected element index.
+	*/
+	PUBLIC FUNCTION("array", "onLBDrag_LISTBOX_VITEMS_PROXIMITY") {
+		private _control = _this select 0;
+		private _index = _this select 1;
+
+	};
+
+	/*
+	*	onLBDragging:
+	*		Drag & drop operation is in progress.
+	*		Returns the control and the x and y coordinates.
+	*/
+	PUBLIC FUNCTION("array", "onLBDragging_LISTBOX_VITEMS_PROXIMITY") {
+		private _control = _this select 0;
+		private _abs = _this select 1;
+		private _ord = _this select 2;
+
+	};
+
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_USE") {
-		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS", nil);
+		private _index = lbCurSel  MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
 		if(_index > -1) then {
 			private _content = "getContent" call MEMBER("container", nil);
 			private _object = _content select _index;
-			private _code = _object select 7;
-			private _durability = _object select 6;
+			private _code = _object select 5;
+			private _durability = _object select 4;
 			if !(_durability isEqualTo 0 ) then {
 				private _result = ("getObject" call MEMBER("container", nil)) call _code;
 				if(_result) then {
 					if(_durability > -1) then { _durability = _durability - 1;	};
 					if !(_durability isEqualTo 0 ) then {
-						_object set [6, _durability];
+						_object set [4, _durability];
 						_content set[_index, _object];
 					} else {
 						_content deleteAt _index;
@@ -122,12 +147,12 @@ CLASS("oo_UI_VITEMS")
 	};
 
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_TAKE") {
-		private _index = lbCurSel MEMBER("LISTBOX_VITEMS", nil);
+		private _index = lbCurSel MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
 		if(_index > -1) then {
 			// if object inventory is opened
 			if (MEMBER("mode", nil) isEqualTo "object") then {
 				private _container = ["new", player] call OO_CONTAINER;
-				MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
+				MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel (_index -1);
 				private _item = ["getItem", _index] call MEMBER("container", nil);
 				["addItem", _item] call _container;
 				MEMBER("refresh_LISTBOX_VITEMS", nil);
@@ -135,7 +160,7 @@ CLASS("oo_UI_VITEMS")
 			// if inventory of player is opened
 				if (!isNull cursorObject) then {
 					private _container = ["new", cursorObject] call OO_CONTAINER;
-					MEMBER("LISTBOX_VITEMS", nil) lbSetCurSel (_index -1);
+					MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel (_index -1);
 					private _item = ["getItem", _index] call MEMBER("container", nil);
 					["addItem", _item] call _container;
 					MEMBER("refresh_LISTBOX_VITEMS", nil);
@@ -172,10 +197,44 @@ CLASS("oo_UI_VITEMS")
 		};
 		MEMBER("refresh_LISTBOX_VITEMS", nil);
 	};
-	
+
+	/*
+	*	onLBSelChanged:
+	*		The selection in a listbox is changed. The left mouse button has been released and the new selection is fully made.
+	*		Returns the control and the selected element index.
+	*/
+	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS_CAPACITIES") {
+		private _control = _this select 0;
+		private _index = _this select 1;
+
+	};
+
+	/*
+	*	onLBDrag:
+	*		Drag & drop operation started.
+	*		Returns the control and the selected element index.
+	*/
+	PUBLIC FUNCTION("array", "onLBDrag_LISTBOX_VITEMS_CAPACITIES") {
+		private _control = _this select 0;
+		private _index = _this select 1;
+
+	};
+
+	/*
+	*	onLBDragging:
+	*		Drag & drop operation is in progress.
+	*		Returns the control and the x and y coordinates.
+	*/
+	PUBLIC FUNCTION("array", "onLBDragging_LISTBOX_VITEMS_CAPACITIES") {
+		private _control = _this select 0;
+		private _abs = _this select 1;
+		private _ord = _this select 2;
+
+	};
 	PUBLIC FUNCTION("", "getBACKGROUND_VITEMS") FUNC_GETVAR("BACKGROUND_VITEMS");
 	PUBLIC FUNCTION("", "getDisplay") FUNC_GETVAR("Display");
-	PUBLIC FUNCTION("", "getLISTBOX_VITEMS") FUNC_GETVAR("LISTBOX_VITEMS");
+	PUBLIC FUNCTION("", "getLISTBOX_VITEMS_CAPACITIES") FUNC_GETVAR("LISTBOX_VITEMS_CAPACITIES");
+	PUBLIC FUNCTION("", "getLISTBOX_VITEMS_PROXIMITY") FUNC_GETVAR("LISTBOX_VITEMS_PROXIMITY");
 	PUBLIC FUNCTION("", "getMainLayer") FUNC_GETVAR("MainLayer");
 	PUBLIC FUNCTION("", "getOOP_MainLayer_100") FUNC_GETVAR("OOP_MainLayer_100");
 	PUBLIC FUNCTION("", "getOOP_StructuredText_105") FUNC_GETVAR("OOP_StructuredText_105");
@@ -186,7 +245,8 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("", "getUI_VITEMS_TITLE") FUNC_GETVAR("UI_VITEMS_TITLE");
 	PUBLIC FUNCTION("", "getUI_VITEMS_USE") FUNC_GETVAR("UI_VITEMS_USE");
 	PUBLIC FUNCTION("control", "setBACKGROUND_VITEMS"){ MEMBER("BACKGROUND_VITEMS", _this); };
-	PUBLIC FUNCTION("control", "setLISTBOX_VITEMS"){ MEMBER("LISTBOX_VITEMS", _this); };
+	PUBLIC FUNCTION("control", "setLISTBOX_VITEMS_CAPACITIES"){ MEMBER("LISTBOX_VITEMS_CAPACITIES", _this); };
+	PUBLIC FUNCTION("control", "setLISTBOX_VITEMS_PROXIMITY"){ MEMBER("LISTBOX_VITEMS_PROXIMITY", _this); };
 	PUBLIC FUNCTION("control", "setMainLayer"){ MEMBER("MainLayer", _this); };
 	PUBLIC FUNCTION("control", "setOOP_MainLayer_100"){ MEMBER("OOP_MainLayer_100", _this); };
 	PUBLIC FUNCTION("control", "setOOP_StructuredText_105"){ MEMBER("OOP_StructuredText_105", _this); };
@@ -199,7 +259,8 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("display", "setDisplay"){ MEMBER("Display", _this); };
 	PUBLIC FUNCTION("", "deconstructor"){
 		DELETE_UI_VARIABLE("BACKGROUND_VITEMS");
-		DELETE_UI_VARIABLE("LISTBOX_VITEMS");
+		DELETE_UI_VARIABLE("LISTBOX_VITEMS_CAPACITIES");
+		DELETE_UI_VARIABLE("LISTBOX_VITEMS_PROXIMITY");
 		DELETE_UI_VARIABLE("MainLayer");
 		DELETE_UI_VARIABLE("OOP_MainLayer_100");
 		DELETE_UI_VARIABLE("OOP_StructuredText_105");
