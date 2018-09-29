@@ -12,6 +12,7 @@ class UI_VITEMS {
 			y = -13 * pixelGrid * pixelH;
 			w = 159.675 * pixelGrid * pixelW;
 			h = 86.6667 * pixelGrid * pixelH;
+			onLBDrop = "['dragDrop', _this] call UI_VITEMS;";
 			class controls{
 				class OOP_SubLayer_101_0_101 : OOP_SubLayer {
 					idc = 101;
@@ -56,6 +57,7 @@ class UI_VITEMS {
 							y = 6.93333 * pixelGrid * pixelH;
 							w = 31.935 * pixelGrid * pixelW;
 							h = 45.0667 * pixelGrid * pixelH;
+							canDrag = 1;
 							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
 							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
 							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
@@ -101,6 +103,7 @@ class UI_VITEMS {
 							y = 6.93333 * pixelGrid * pixelH;
 							w = 29.9391 * pixelGrid * pixelW;
 							h = 27.7333 * pixelGrid * pixelH;
+							canDrag = 1;
 							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
 							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
 							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";

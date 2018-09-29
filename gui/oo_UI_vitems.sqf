@@ -43,20 +43,28 @@ CLASS("oo_UI_VITEMS")
 		} else {
 			MEMBER("setMode", "object");
 		};
-		MEMBER("refresh_LISTBOX_VITEMS", nil);
+		MEMBER("refresh_LISTBOX_VITEMS_PROXIMITY", nil);
+		private _container = ["new", player] call OO_CONTAINER;
+		private _array = [MEMBER("LISTBOX_VITEMS_CAPACITIES",nil), _container];
+		MEMBER("refresh_LISTBOX", _array);
 	};
 
 	PUBLIC FUNCTION("", "btnAction_UI_VITEMS_EXIT") {
 		closeDialog 0;
 	};
 
-	PUBLIC FUNCTION("", "refresh_LISTBOX_VITEMS") {
+	PUBLIC FUNCTION("array", "dragDrop") {
+		hint format["DROP: %1", _this];
+	};
+
+	PUBLIC FUNCTION("", "refresh_LISTBOX_VITEMS_PROXIMITY") {
 		lbClear MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
 		private _name = "getName" call MEMBER("container", nil);
 		private _weight = "countWeight" call MEMBER("container", nil);
 		private _size = "countSize" call MEMBER("container", nil);
 		private _limitsize = "getLimitSize" call MEMBER("container", nil);
 		private _limitweight = "getLimitWeight" call MEMBER("container", nil);
+		
 		MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format["%1 inventory | Size: %2/%3 | Weight: %4/%5 Kg", _name, _size, _limitsize, _weight, _limitweight];
 		_content = "getContent" call MEMBER("container", nil);
 		{
@@ -83,6 +91,44 @@ CLASS("oo_UI_VITEMS")
 		};
 	};
 
+	PUBLIC FUNCTION("array", "refresh_LISTBOX") {
+		private _control = _this select 0;
+		private _container = _this select 1;
+
+		lbClear _control;
+		private _name = "getName" call _container;
+		private _weight = "countWeight" call _container;
+		private _size = "countSize" call _container;
+		private _limitsize = "getLimitSize" call _container;
+		private _limitweight = "getLimitWeight" call _container;
+		private _content = "getContent" call _container;
+
+		{
+			_control lbAdd (_x select 0);
+			_control lbSetPicture [_forEachIndex, (_x select 6)];
+			_control lbSetValue[_forEachIndex, _forEachIndex];
+		}foreach _content;
+		
+		MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText "";
+		private _indexlast =  ("countSize" call _container) - 1;
+		private _indexselected = lbCurSel _control;
+
+		if(_indexselected > _indexlast) then {
+			_control lbSetCurSel _indexlast;
+			_indexselected = _indexlast;
+		};
+
+		if((_indexselected isEqualTo -1) && (_indexlast > -1)) then {
+			_control lbSetCurSel 0;
+			_indexselected = 0;
+		};
+
+		if (_indexselected > -1) then {
+			_content = ("getContent" call _container) select _indexselected;
+			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
+		};
+	};
+
 	/*
 	*	onLBSelChanged:
 	*		The selection in a listbox is changed. The left mouse button has been released and the new selection is fully made.
@@ -98,6 +144,8 @@ CLASS("oo_UI_VITEMS")
 			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
 		};
 	};
+
+
 
 	/*
 	*	onLBDrag:
@@ -141,7 +189,7 @@ CLASS("oo_UI_VITEMS")
 					};
 					["setContent", _content] call MEMBER("container", nil);
 				};
-				MEMBER("refresh_LISTBOX_VITEMS", nil);
+				MEMBER("refresh_LISTBOX_VITEMS_PROXIMITY", nil);
 			};
 		};
 	};
@@ -155,7 +203,7 @@ CLASS("oo_UI_VITEMS")
 				MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel (_index -1);
 				private _item = ["getItem", _index] call MEMBER("container", nil);
 				["addItem", _item] call _container;
-				MEMBER("refresh_LISTBOX_VITEMS", nil);
+				MEMBER("refresh_LISTBOX_VITEMS_PROXIMITY", nil);
 			} else {
 			// if inventory of player is opened
 				if (!isNull cursorObject) then {
@@ -163,7 +211,7 @@ CLASS("oo_UI_VITEMS")
 					MEMBER("LISTBOX_VITEMS_PROXIMITY", nil) lbSetCurSel (_index -1);
 					private _item = ["getItem", _index] call MEMBER("container", nil);
 					["addItem", _item] call _container;
-					MEMBER("refresh_LISTBOX_VITEMS", nil);
+					MEMBER("refresh_LISTBOX_VITEMS_PROXIMITY", nil);
 				};
 			};
 		};
@@ -195,7 +243,7 @@ CLASS("oo_UI_VITEMS")
 		} else{
 			MEMBER("setMode", "player");
 		};
-		MEMBER("refresh_LISTBOX_VITEMS", nil);
+		MEMBER("refresh_LISTBOX_VITEMS_PROXIMITY", nil);
 	};
 
 	/*
@@ -206,7 +254,13 @@ CLASS("oo_UI_VITEMS")
 	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS_CAPACITIES") {
 		private _control = _this select 0;
 		private _index = _this select 1;
-
+		private _container = ["new", player] call OO_CONTAINER;
+		if(_index >= ("countSize" call _container)) exitWith {};
+		if(_index > -1) then {
+			_content = ("getContent" call _container) select _index;
+			//"name", "description", "category", "price","weight", "owner", "life"
+			MEMBER("OOP_StructuredText_105", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
+		};
 	};
 
 	/*
