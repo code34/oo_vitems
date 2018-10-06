@@ -1,10 +1,10 @@
-class UI_VITEMS {
-	idd = 10001;
-	name= "UI_VITEMS";
+class Vitems {
+	idd = 1000;
+	name= "Vitems";
 	movingEnable = false;
 	enableSimulation = true;
-	onLoad = "with missionNamespace do{UI_VITEMS = ['new', _this select 0] call oo_UI_VITEMS;};";
-	onUnload = "with missionNamespace do{['delete',UI_VITEMS] call oo_UI_VITEMS;};";
+	onLoad = "with missionNamespace do{Vitems = ['new', _this select 0] call oo_Vitems;};";
+	onUnload = "with missionNamespace do{['delete',Vitems] call oo_Vitems;};";
 	class controlsBackground {
 		class OOP_MainLayer_100_100 : OOP_MainLayer {
 			idc = 100;
@@ -12,103 +12,72 @@ class UI_VITEMS {
 			y = -13 * pixelGrid * pixelH;
 			w = 159.675 * pixelGrid * pixelW;
 			h = 86.6667 * pixelGrid * pixelH;
-			onLBDrop = "['dragDrop', _this] call UI_VITEMS;";
+			onLBDrop = "['dragDrop', _this] call VITEMS;";
 			class controls{
-				class OOP_SubLayer_101_0_101 : OOP_SubLayer {
+				class OOP_Text_Fond_101: OOP_Text {
 					idc = 101;
-					x = 29.9391 * pixelGrid * pixelW;
-					y = 15.6 * pixelGrid * pixelH;
-					w = 101.793 * pixelGrid * pixelW;
-					h = 58.9334 * pixelGrid * pixelH;
-					class controls{
-						class BACKGROUND_VITEMS_102: OOP_Text {
-							idc = 102;
-							x = 0.2515 * pixelGrid * pixelW;
-							y = 5.2 * pixelGrid * pixelH;
-							w = 101.541 * pixelGrid * pixelW;
-							h = 53.7333 * pixelGrid * pixelH;
-							colorBackground[] = {0, 0, 0, 0.78};
-							text = "";
-						};
-						class UI_VITEMS_EXIT_103: OOP_Button {
-							idc = 103;
-							x = 81.8334 * pixelGrid * pixelW;
-							y = 53.7333 * pixelGrid * pixelH;
-							w = 15.9675 * pixelGrid * pixelW;
-							h = 3.46667 * pixelGrid * pixelH;
-							text = "Exit";
-							action = "'btnAction_UI_VITEMS_EXIT' call UI_VITEMS;";
-						};
-						class UI_VITEMS_TITLE_104: OOP_Text {
-							idc = 104;
-							x = 0.2515 * pixelGrid * pixelW;
-							y = 0.182 * pixelGrid * pixelH;
-							w = 101.541 * pixelGrid * pixelW;
-							h = 5.018 * pixelGrid * pixelH;
-							text = "Inventory";
-							colorText[] = {1, 1, 1, 1};
-							colorBackground[] = {0.1, 0.38, 0.04, 1};
-							colorForeground[] = {0, 0.3, 0, 1};
-							tooltipColorText[] = {1, 1, 1, 1};
-						};
-						class LISTBOX_VITEMS_PROXIMITY_105: OOP_Listbox {
-							idc = 105;
-							x = 1.99594 * pixelGrid * pixelW;
-							y = 6.93333 * pixelGrid * pixelH;
-							w = 31.935 * pixelGrid * pixelW;
-							h = 45.0667 * pixelGrid * pixelH;
-							canDrag = 1;
-							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
-							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
-							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_PROXIMITY', _this] call UI_VITEMS;";
-						};
-						class OOP_StructuredText_105_106: OOP_StructuredText {
-							idc = 106;
-							x = 37.9228 * pixelGrid * pixelW;
-							y = 36.4 * pixelGrid * pixelH;
-							w = 59.8781 * pixelGrid * pixelW;
-							h = 15.6 * pixelGrid * pixelH;
-							text = "";
-						};
-						class UI_VITEMS_USE_107: OOP_Button {
-							idc = 107;
-							x = 63.87 * pixelGrid * pixelW;
-							y = 53.7333 * pixelGrid * pixelH;
-							w = 15.9675 * pixelGrid * pixelW;
-							h = 3.46667 * pixelGrid * pixelH;
-							text = "Use";
-							action = "'btnAction_UI_VITEMS_USE' call UI_VITEMS;";
-						};
-						class UI_VITEMS_TAKE_108: OOP_Button {
-							idc = 108;
-							x = 45.9066 * pixelGrid * pixelW;
-							y = 53.7333 * pixelGrid * pixelH;
-							w = 15.9675 * pixelGrid * pixelW;
-							h = 3.46667 * pixelGrid * pixelH;
-							text = "Take";
-							action = "'btnAction_UI_VITEMS_TAKE' call UI_VITEMS;";
-						};
-						class UI_VITEMS_SWITCH_109: OOP_Button {
-							idc = 109;
-							x = 27.9431 * pixelGrid * pixelW;
-							y = 53.7333 * pixelGrid * pixelH;
-							w = 15.9675 * pixelGrid * pixelW;
-							h = 3.46667 * pixelGrid * pixelH;
-							text = "Switch";
-							action = "'btnAction_UI_VITEMS_SWITCH' call UI_VITEMS;";
-						};
-						class LISTBOX_VITEMS_CAPACITIES_110: OOP_Listbox {
-							idc = 110;
-							x = 37.9228 * pixelGrid * pixelW;
-							y = 6.93333 * pixelGrid * pixelH;
-							w = 29.9391 * pixelGrid * pixelW;
-							h = 27.7333 * pixelGrid * pixelH;
-							canDrag = 1;
-							onLBSelChanged = "['onLBSelChanged_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
-							onLBDrag = "['onLBDrag_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
-							onLBDragging = "['onLBDragging_LISTBOX_VITEMS_CAPACITIES', _this] call UI_VITEMS;";
-						};
-					};
+					x = 35.9269 * pixelGrid * pixelW;
+					y = 17.3333 * pixelGrid * pixelH;
+					w = 89.8172 * pixelGrid * pixelW;
+					h = 52 * pixelGrid * pixelH;
+					text = "";
+					colorBackground[] = {0, 0, 0, 0.80};
+				};
+				class OOP_Listbox_Proximity_102: OOP_Listbox {
+					idc = 102;
+					x = 37.9228 * pixelGrid * pixelW;
+					y = 20.8 * pixelGrid * pixelH;
+					w = 23.9513 * pixelGrid * pixelW;
+					h = 31.2 * pixelGrid * pixelH;
+					canDrag = 1;
+					onLBDragging = "['setDestination', _this] call VITEMS";
+					onLBDrag = "['setSource', _this] call VITEMS";
+				};
+				class OOP_Listbox_Capacities_103: OOP_Listbox {
+					idc = 103;
+					x = 63.87 * pixelGrid * pixelW;
+					y = 20.8 * pixelGrid * pixelH;
+					w = 23.9513 * pixelGrid * pixelW;
+					h = 31.2 * pixelGrid * pixelH;
+					canDrag = 1;
+					onLBDragging = "['setDestination', _this] call VITEMS";
+					onLBDrag = "['setSource', _this] call VITEMS";
+				};
+				class OOP_Text_Description_104: OOP_Text {
+					idc = 104;
+					x = 37.9228 * pixelGrid * pixelW;
+					y = 53.7333 * pixelGrid * pixelH;
+					w = 49.8984 * pixelGrid * pixelW;
+					h = 13.8667 * pixelGrid * pixelH;
+					text = "";
+					colorBackground[] = {0, 0.3, 0, 0.21};
+				};
+				class OOP_Text_proximity_105: OOP_Text {
+					idc = 105;
+					x = 37.9228 * pixelGrid * pixelW;
+					y = 19.0667 * pixelGrid * pixelH;
+					w = 9.97969 * pixelGrid * pixelW;
+					h = 1.73333 * pixelGrid * pixelH;
+					text = "Proximity";
+					colorBackground[] = {0, 0, 0, 0.2};
+				};
+				class OOP_Text_Capacities_106: OOP_Text {
+					idc = 106;
+					x = 63.87 * pixelGrid * pixelW;
+					y = 19.0667 * pixelGrid * pixelH;
+					w = 9.97969 * pixelGrid * pixelW;
+					h = 1.73333 * pixelGrid * pixelH;
+					text = "Capacities";
+					colorBackground[] = {0, 0, 0, 0.2};
+				};
+				class OOP_Text_Inventory_107: OOP_Text {
+					idc = 107;
+					x = 35.9269 * pixelGrid * pixelW;
+					y = 13.8667 * pixelGrid * pixelH;
+					w = 25.9472 * pixelGrid * pixelW;
+					h = 3.46667 * pixelGrid * pixelH;
+					text = "Inventory";
+					colorBackground[] = {0, 0.3, 0, 1};
 				};
 			};
 		};
@@ -117,5 +86,5 @@ class UI_VITEMS {
 };
 
 /*
-["UI_VITEMS",10001,[[[["29.9391 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH","101.793 * pixelGrid * pixelW","58.9334 * pixelGrid * pixelH"],"","OOP_SubLayer_101_0","","OOP_SubLayer",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]],[[[["0.2515 * pixelGrid * pixelW","5.2 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH"],"","BACKGROUND_VITEMS","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.78],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["81.8334 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Exit","UI_VITEMS_EXIT","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["0.2515 * pixelGrid * pixelW","0.182 * pixelGrid * pixelH","101.541 * pixelGrid * pixelW","5.018 * pixelGrid * pixelH"],"Inventory","UI_VITEMS_TITLE","","OOP_Text",true,[],[1,1,1,1],[0.1,0.38,0.04,1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["1.99594 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","31.935 * pixelGrid * pixelW","45.0667 * pixelGrid * pixelH"],"","LISTBOX_VITEMS_PROXIMITY","","OOP_Listbox",true,["onLBSelChanged","onLBDrag","onLBDragging"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","36.4 * pixelGrid * pixelH","59.8781 * pixelGrid * pixelW","15.6 * pixelGrid * pixelH"],"text","OOP_StructuredText_105","","OOP_StructuredText",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Use","UI_VITEMS_USE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["45.9066 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Take","UI_VITEMS_TAKE","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["27.9431 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","15.9675 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Switch","UI_VITEMS_SWITCH","","OOP_Button",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","6.93333 * pixelGrid * pixelH","29.9391 * pixelGrid * pixelW","27.7333 * pixelGrid * pixelH"],"","LISTBOX_VITEMS_CAPACITIES","","OOP_Listbox",true,["onLBSelChanged","onLBDrag","onLBDragging"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]]]
+["Vitems",1000,[[[["35.9269 * pixelGrid * pixelW","17.3333 * pixelGrid * pixelH","89.8172 * pixelGrid * pixelW","52 * pixelGrid * pixelH"],"text","OOP_Text_Fond","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.21],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","20.8 * pixelGrid * pixelH","23.9513 * pixelGrid * pixelW","31.2 * pixelGrid * pixelH"],"","OOP_Listbox_Proximity","","OOP_Listbox",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","20.8 * pixelGrid * pixelH","23.9513 * pixelGrid * pixelW","31.2 * pixelGrid * pixelH"],"","OOP_Listbox_Capacities","","OOP_Listbox",true,[],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","53.7333 * pixelGrid * pixelH","49.8984 * pixelGrid * pixelW","13.8667 * pixelGrid * pixelH"],"text","OOP_Text_Description","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0.3,0,0.21],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["37.9228 * pixelGrid * pixelW","19.0667 * pixelGrid * pixelH","9.97969 * pixelGrid * pixelW","1.73333 * pixelGrid * pixelH"],"Proximity","OOP_Text_proximity","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.2],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["63.87 * pixelGrid * pixelW","19.0667 * pixelGrid * pixelH","9.97969 * pixelGrid * pixelW","1.73333 * pixelGrid * pixelH"],"Capacities","OOP_Text_Capacities","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0,0,0.2],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]],[[["35.9269 * pixelGrid * pixelW","13.8667 * pixelGrid * pixelH","25.9472 * pixelGrid * pixelW","3.46667 * pixelGrid * pixelH"],"Inventory","OOP_Text_Inventory","","OOP_Text",true,[],[-1,-1,-1,-1],[0,0.3,0,1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1]]]]]
 */
