@@ -33,24 +33,28 @@ CLASS("oo_Vitems")
 	};
 	PUBLIC FUNCTION("", "Init"){
 		//MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
-
 		// print ground/object listbox
 		private _container = ["new", cursorObject] call OO_CONTAINER;
 		MEMBER("prox_container", _container);
-		private _array = [MEMBER("OOP_Listbox_Proximity",nil), _container];
-		MEMBER("refresh_LISTBOX", _array);
-
 		// print player listbox
 		private _container = ["new", player] call OO_CONTAINER;
+
 		MEMBER("cap_container", _container);
-		private _array = [MEMBER("OOP_Listbox_Capacities",nil), _container];
+		MEMBER("refresh", nil);
+	};
+
+	PUBLIC FUNCTION("", "refresh"){
+		private _array = [MEMBER("OOP_Listbox_Proximity",nil), MEMBER("prox_container", nil)];
 		MEMBER("refresh_LISTBOX", _array);
+
+		private _array = [MEMBER("OOP_Listbox_Capacities",nil), MEMBER("cap_container", nil)];
+		MEMBER("refresh_LISTBOX", _array);
+		MEMBER("refresh_title", nil);
 	};
 
 	PUBLIC FUNCTION("array", "setDestination"){
-		systemChat str ['onLBDrag', _this]; 
+		//systemChat str ['onLBDrag', _this]; 
 		//private _control = MEMBER("Display", nil) displayCtrl (_this select 0);
-		//hint format ["%1", _control];
 		MEMBER("destination", _this);
 	};
 
@@ -59,24 +63,37 @@ CLASS("oo_Vitems")
 	};
 
 	PUBLIC FUNCTION("array", "dragDrop") {
-		(MEMBER("destination", nil) select 0) lbAdd (((_this select 4) select 0) select 0);
-		(MEMBER("source", nil) select 0) lbDelete (((MEMBER("source", nil) select 1) select 0) select 1);
-		copyToClipboard format["%1 && %2", MEMBER("destination", nil), MEMBER("source", nil)];
-		/*		_index = 
-		private _item = ["getItem", _index] call MEMBER("container", nil);
-		["addItem", _item] call _container;*/
+		private _source = MEMBER("source", nil) select 0;
+		private _destination = MEMBER("destination", nil) select 0;
+		private _scontainer = "";
+		private _dcontainer = "";
+
+		if (_source isEqualTo MEMBER("OOP_Listbox_Capacities", nil)) then {
+			_scontainer = MEMBER("cap_container", nil);
+		} else {
+			_scontainer = MEMBER("prox_container", nil);
+		};
+
+		if (_destination isEqualTo MEMBER("OOP_Listbox_Capacities", nil)) then {
+			_dcontainer = MEMBER("cap_container", nil);
+		} else {
+			_dcontainer = MEMBER("prox_container", nil);
+		};
+
+		private _index = (((_this select 4) select 0) select 1);
+		private _item = ["getItem", _index] call _scontainer;
+		["addItem", _item] call _dcontainer;
+		MEMBER("refresh", nil);
 	};
 
-/*	PUBLIC FUNCTION("", "refresh_LISTBOX_VITEMS_PROXIMITY") {
-		lbClear MEMBER("LISTBOX_VITEMS_PROXIMITY", nil);
-		private _name = "getName" call MEMBER("container", nil);
-		private _weight = "countWeight" call MEMBER("container", nil);
-		private _size = "countSize" call MEMBER("container", nil);
-		private _limitsize = "getLimitSize" call MEMBER("container", nil);
-		private _limitweight = "getLimitWeight" call MEMBER("container", nil);
-
-		MEMBER("UI_VITEMS_TITLE", nil) ctrlSetText format["%1 inventory | Size: %2/%3 | Weight: %4/%5 Kg", _name, _size, _limitsize, _weight, _limitweight];
-	};*/
+	PUBLIC FUNCTION("", "refresh_title") {
+		private _name = "getName" call MEMBER("cap_container", nil);
+		private _weight = "countWeight" call MEMBER("cap_container", nil);
+		private _size = "countSize" call MEMBER("cap_container", nil);
+		private _limitsize = "getLimitSize" call MEMBER("cap_container", nil);
+		private _limitweight = "getLimitWeight" call MEMBER("cap_container", nil);
+		MEMBER("OOP_Text_Inventory", nil) ctrlSetText format["%1 inventory | Size: %2/%3 | Weight: %4/%5 Kg", _name, _size, _limitsize, _weight, _limitweight];
+	};
 
 	PUBLIC FUNCTION("array", "refresh_LISTBOX") {
 		private _control = _this select 0;
@@ -89,7 +106,7 @@ CLASS("oo_Vitems")
 		private _limitsize = "getLimitSize" call _container;
 		private _limitweight = "getLimitWeight" call _container;
 		private _content = "getContent" call _container;
-		private _textcontrol = MEMBER("OOP_Text_Description", nil);
+		//private _textcontrol = MEMBER("OOP_Text_Description", nil);
 
 		{
 			_control lbAdd (_x select 0);
@@ -97,7 +114,7 @@ CLASS("oo_Vitems")
 			_control lbSetValue[_forEachIndex, _forEachIndex];
 		}foreach _content;
 		
-		_textcontrol ctrlSetStructuredText parseText "";
+		//_textcontrol ctrlSetStructuredText parseText "";
 		private _indexlast =  ("countSize" call _container) - 1;
 		private _indexselected = lbCurSel _control;
 
@@ -117,7 +134,7 @@ CLASS("oo_Vitems")
 	*		The selection in a listbox is changed. The left mouse button has been released and the new selection is fully made.
 	*		Returns the control and the selected element index.
 	*/
-	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS_PROXIMITY") {
+	PUBLIC FUNCTION("array", "onLBSelChanged_OOP_Listbox_Proximity") {
 		private _control = _this select 0;
 		private _index = _this select 1;
 		if(_index >= ("countSize" call MEMBER("prox_container", nil))) exitWith {};
@@ -180,7 +197,7 @@ CLASS("oo_Vitems")
 	*		The selection in a listbox is changed. The left mouse button has been released and the new selection is fully made.
 	*		Returns the control and the selected element index.
 	*/
-	PUBLIC FUNCTION("array", "onLBSelChanged_LISTBOX_VITEMS_CAPACITIES") {
+	PUBLIC FUNCTION("array", "onLBSelChanged_OOP_Listbox_Capacities") {
 		private _control = _this select 0;
 		private _index = _this select 1;
 		if(_index >= ("countSize" call MEMBER("cap_container", nil))) exitWith {};
