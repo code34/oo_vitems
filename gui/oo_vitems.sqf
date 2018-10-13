@@ -3,7 +3,9 @@ CLASS("oo_Vitems")
 
 	PRIVATE UI_VARIABLE("control", "MainLayer");
 	PRIVATE UI_VARIABLE("control", "OOP_Listbox_Capacities");
+	PRIVATE UI_VARIABLE("control", "OOP_Listbox_primaryweapon");
 	PRIVATE UI_VARIABLE("control", "OOP_Listbox_Proximity");
+	PRIVATE UI_VARIABLE("control", "OOP_Listbox_secondaryweapon");
 	PRIVATE UI_VARIABLE("control", "OOP_MainLayer_100");
 	PRIVATE UI_VARIABLE("control", "OOP_Text_Capacities");
 	PRIVATE UI_VARIABLE("control", "OOP_Text_Description");
@@ -22,13 +24,15 @@ CLASS("oo_Vitems")
 		MEMBER("Display", _this);
 		MEMBER("MainLayer", _this displayCtrl 100);
 		MEMBER("OOP_Listbox_Capacities", _this displayCtrl 103);
+		MEMBER("OOP_Listbox_primaryweapon", _this displayCtrl 110);
 		MEMBER("OOP_Listbox_Proximity", _this displayCtrl 102);
+		MEMBER("OOP_Listbox_secondaryweapon", _this displayCtrl 111);
 		MEMBER("OOP_MainLayer_100", _this displayCtrl 100);
-		MEMBER("OOP_Text_Capacities", _this displayCtrl 106);
-		MEMBER("OOP_Text_Description", _this displayCtrl 104);
+		MEMBER("OOP_Text_Capacities", _this displayCtrl 105);
+		MEMBER("OOP_Text_Description", _this displayCtrl 109);
 		MEMBER("OOP_Text_Fond", _this displayCtrl 101);
-		MEMBER("OOP_Text_Inventory", _this displayCtrl 107);
-		MEMBER("OOP_Text_proximity", _this displayCtrl 105);
+		MEMBER("OOP_Text_Inventory", _this displayCtrl 106);
+		MEMBER("OOP_Text_proximity", _this displayCtrl 104);
 		MEMBER("Init", nil);
 	};
 	PUBLIC FUNCTION("", "Init"){
@@ -53,7 +57,7 @@ CLASS("oo_Vitems")
 	};
 
 	PUBLIC FUNCTION("array", "setDestination"){
-		//systemChat str ['onLBDrag', _this]; 
+		systemChat str ['onLBDrag', _this]; 
 		//private _control = MEMBER("Display", nil) displayCtrl (_this select 0);
 		MEMBER("destination", _this);
 	};
@@ -208,11 +212,12 @@ CLASS("oo_Vitems")
 		};
 	};
 
-
 	PUBLIC FUNCTION("", "getDisplay") FUNC_GETVAR("Display");
 	PUBLIC FUNCTION("", "getMainLayer") FUNC_GETVAR("MainLayer");
 	PUBLIC FUNCTION("", "getOOP_Listbox_Capacities") FUNC_GETVAR("OOP_Listbox_Capacities");
+	PUBLIC FUNCTION("", "getOOP_Listbox_primaryweapon") FUNC_GETVAR("OOP_Listbox_primaryweapon");
 	PUBLIC FUNCTION("", "getOOP_Listbox_Proximity") FUNC_GETVAR("OOP_Listbox_Proximity");
+	PUBLIC FUNCTION("", "getOOP_Listbox_secondaryweapon") FUNC_GETVAR("OOP_Listbox_secondaryweapon");
 	PUBLIC FUNCTION("", "getOOP_MainLayer_100") FUNC_GETVAR("OOP_MainLayer_100");
 	PUBLIC FUNCTION("", "getOOP_Text_Capacities") FUNC_GETVAR("OOP_Text_Capacities");
 	PUBLIC FUNCTION("", "getOOP_Text_Description") FUNC_GETVAR("OOP_Text_Description");
@@ -221,7 +226,9 @@ CLASS("oo_Vitems")
 	PUBLIC FUNCTION("", "getOOP_Text_proximity") FUNC_GETVAR("OOP_Text_proximity");
 	PUBLIC FUNCTION("control", "setMainLayer"){ MEMBER("MainLayer", _this); };
 	PUBLIC FUNCTION("control", "setOOP_Listbox_Capacities"){ MEMBER("OOP_Listbox_Capacities", _this); };
+	PUBLIC FUNCTION("control", "setOOP_Listbox_primaryweapon"){ MEMBER("OOP_Listbox_primaryweapon", _this); };
 	PUBLIC FUNCTION("control", "setOOP_Listbox_Proximity"){ MEMBER("OOP_Listbox_Proximity", _this); };
+	PUBLIC FUNCTION("control", "setOOP_Listbox_secondaryweapon"){ MEMBER("OOP_Listbox_secondaryweapon", _this); };
 	PUBLIC FUNCTION("control", "setOOP_MainLayer_100"){ MEMBER("OOP_MainLayer_100", _this); };
 	PUBLIC FUNCTION("control", "setOOP_Text_Capacities"){ MEMBER("OOP_Text_Capacities", _this); };
 	PUBLIC FUNCTION("control", "setOOP_Text_Description"){ MEMBER("OOP_Text_Description", _this); };
@@ -232,7 +239,9 @@ CLASS("oo_Vitems")
 	PUBLIC FUNCTION("", "deconstructor"){
 		DELETE_UI_VARIABLE("MainLayer");
 		DELETE_UI_VARIABLE("OOP_Listbox_Capacities");
+		DELETE_UI_VARIABLE("OOP_Listbox_primaryweapon");
 		DELETE_UI_VARIABLE("OOP_Listbox_Proximity");
+		DELETE_UI_VARIABLE("OOP_Listbox_secondaryweapon");
 		DELETE_UI_VARIABLE("OOP_MainLayer_100");
 		DELETE_UI_VARIABLE("OOP_Text_Capacities");
 		DELETE_UI_VARIABLE("OOP_Text_Description");
