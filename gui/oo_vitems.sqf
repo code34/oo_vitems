@@ -54,6 +54,24 @@ CLASS("oo_Vitems")
 		private _array = [MEMBER("OOP_Listbox_Capacities",nil), MEMBER("cap_container", nil)];
 		MEMBER("refresh_LISTBOX", _array);
 		MEMBER("refresh_title", nil);
+		MEMBER("refreshPrimary", nil);
+		MEMBER("refreshSecondary", nil);
+	};
+
+	PUBLIC FUNCTION("", "refreshPrimary"){
+		lbClear MEMBER("OOP_Listbox_primaryweapon", nil);
+		MEMBER("OOP_Listbox_primaryweapon", nil) lbAdd "";
+		private _weapon = primaryWeapon player;
+		private _picture = getText (configFile >> "CfgWeapons" >> _weapon >> "Picture");
+		MEMBER("OOP_Listbox_primaryweapon", nil) lbSetPicture [0,_picture];
+	};
+
+	PUBLIC FUNCTION("", "refreshSecondary"){
+		lbClear MEMBER("OOP_Listbox_secondaryweapon", nil);
+		MEMBER("OOP_Listbox_secondaryweapon", nil) lbAdd "";
+		private _weapon = secondaryWeapon player;
+		private _picture = getText (configFile >> "CfgWeapons" >> _weapon >> "Picture");
+		MEMBER("OOP_Listbox_secondaryweapon", nil) lbSetPicture [0,_picture];
 	};
 
 	PUBLIC FUNCTION("array", "setDestination"){

@@ -95,8 +95,7 @@ class Vitems {
 					y = 20.8 * pixelGrid * pixelH;
 					w = 33.9309 * pixelGrid * pixelW;
 					h = 8.66667 * pixelGrid * pixelH;
-					rowHeight = 1;
-					canDrag = 1;
+					rowHeight = 0.14;
 					onLBDragging = "['setDestination', _this] call VITEMS";
 					onLBDrag = "['setSource', _this] call VITEMS";
 				};
@@ -106,8 +105,7 @@ class Vitems {
 					y = 31.2 * pixelGrid * pixelH;
 					w = 33.9309 * pixelGrid * pixelW;
 					h = 8.66667 * pixelGrid * pixelH;
-					rowHeight = 1;
-					canDrag = 1;
+					rowHeight = 0.14;
 					onLBDragging = "['setDestination', _this] call VITEMS";
 					onLBDrag = "['setSource', _this] call VITEMS";
 				};
