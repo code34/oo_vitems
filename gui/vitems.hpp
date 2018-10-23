@@ -91,6 +91,7 @@ class Vitems {
 				};
 				class OOP_Listbox_primaryweapon_110: OOP_Listbox {
 					idc = 110;
+					style = "0x30 + 0x800";
 					x = 89.8172 * pixelGrid * pixelW;
 					y = 20.8 * pixelGrid * pixelH;
 					w = 33.9309 * pixelGrid * pixelW;

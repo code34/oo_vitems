@@ -75,7 +75,7 @@ CLASS("oo_Vitems")
 	};
 
 	PUBLIC FUNCTION("array", "setDestination"){
-		systemChat str ['onLBDrag', _this]; 
+		//systemChat str ['onLBDrag', _this]; 
 		//private _control = MEMBER("Display", nil) displayCtrl (_this select 0);
 		MEMBER("destination", _this);
 	};
