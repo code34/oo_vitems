@@ -38,11 +38,12 @@ CLASS("oo_Vitems")
 	PUBLIC FUNCTION("", "Init"){
 		//MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
 		// print ground/object listbox
-		private _container = ["new", cursorObject] call OO_CONTAINER;
+		private _object = cursorObject;
+		//if (isNull _object) then { 	_object = "Box_B_UAV_06_F" createVehicle position player; _object setpos (position player);};
+		private _container = ["new", _object] call OO_CONTAINER;
 		MEMBER("prox_container", _container);
 		// print player listbox
 		private _container = ["new", player] call OO_CONTAINER;
-
 		MEMBER("cap_container", _container);
 		MEMBER("refresh", nil);
 	};
