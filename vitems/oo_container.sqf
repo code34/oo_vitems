@@ -120,11 +120,14 @@
 				_stuff = "new" call OO_RANDOMSTUFF;
 				_properties = ["createProperties", _object] call _stuff;
 				MEMBER("setProperties", _properties);
-				_content = ["getRandomContent", _object] call _stuff;
-				MEMBER("setContent", _content);
+				if !((typeOf _object isEqualTo "Box_B_UAV_06_F") or (_object isKindOf "House_F")) then {
+					_content = ["getRandomContent", _object] call _stuff;
+					MEMBER("setContent", _content);
+				};
 			};
 			_properties;
 		};
+
 
 		// Serialize container + content
 		PUBLIC FUNCTION("","getContainer") {
@@ -195,6 +198,7 @@
 
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_CONTAINER::deconstructor")
+			deleteVehicle MEMBER("object", nil);
 			DELETE_VARIABLE("this");
 			DELETE_VARIABLE("object");
 		};

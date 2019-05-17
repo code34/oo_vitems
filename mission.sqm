@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=24;
+		nextID=31;
 	};
 	class Camera
 	{
@@ -28,14 +28,13 @@ addons[]=
 	"A3_Structures_F_Argo_Civilian_House_Small01",
 	"A3_Structures_F_Argo_Civilian_Stone_House_Big_01",
 	"A3_Structures_F_Argo_Civilian_Stone_Shed_01",
-	"A3_Characters_F_Tank",
-	"A3_Characters_F"
+	"A3_Characters_F_Tank"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=6;
+		items=5;
 		class Item0
 		{
 			className="A3_Props_F_Orange";
@@ -68,13 +67,6 @@ class AddonsMetaData
 		{
 			className="A3_Characters_F_Tank";
 			name="Arma 3 Tank - Characters and Clothing";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item5
-		{
-			className="A3_Characters_F";
-			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -223,7 +215,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=2;
+				items=1;
 				class Item0
 				{
 					dataType="Object";
@@ -276,63 +268,6 @@ class Mission
 										};
 									};
 									value=0.95999998;
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={4429.498,5.0014391,1201.7521};
-					};
-					side="West";
-					flags=5;
-					class Attributes
-					{
-					};
-					id=23;
-					type="B_soldier_LAT_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="speaker";
-							expression="_this setspeaker _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="Male09ENG";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=1.04;
 								};
 							};
 						};

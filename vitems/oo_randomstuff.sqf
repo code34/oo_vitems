@@ -53,7 +53,7 @@
 			DEBUG(#, "OO_RANDOMSTUFF::createProperties")
 			private _properties = [];
 			switch (true) do {
-				case (_object isKindOf "House_F") : { _properties = ["Building", round(sizeOf (typeof _object))*10, round(sizeOf (typeof _object))*100];};
+				//case (_object isKindOf "House_F") : { _properties = ["Building", round(sizeOf (typeof _object))*10, round(sizeOf (typeof _object))*100];};
 				case (_object isKindOf "Car") : { _properties = ["Vehicle", round(sizeOf (typeof _object))*5, round(sizeOf (typeof _object))*10];};
 				case (_object isKindOf "Man") : { _properties = [name _object, 5, 10]; };
 				case (_object isKindOf "Thing") : { _properties = ["Thing", round(sizeOf (typeof _object))*3, round(sizeOf (typeof _object))*6];};
@@ -73,9 +73,9 @@
 					case (_object isKindOf "Car") : {
 						_type = ["stuff", "food", "military"] selectRandomWeighted [0.7,0.1,0.2];
 					};
-					case (_object isKindOf "House_F") : {
+/*					case (_object isKindOf "House_F") : {
 						_type = ["stuff", "food", "military"] selectRandomWeighted [0.5,0.49,0.001];
-					};
+					};*/
 					default {
 						_type = ["stuff", "food", "military"] selectRandomWeighted [0.5,0.47,0.03];
 					};

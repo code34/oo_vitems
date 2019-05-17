@@ -39,9 +39,14 @@ CLASS("oo_Vitems")
 		//MEMBER("Display", nil) displayAddEventHandler ["KeyDown", "if (_this select 1 isEqualTo 1) then {true} else {false};"];
 		// print ground/object listbox
 		private _object = cursorObject;
-		//if (isNull _object) then { 	_object = "Box_B_UAV_06_F" createVehicle position player; _object setpos (position player);};
+		if (isNull _object) then { 
+			_object = "Box_B_UAV_06_F" createVehicle position player; 
+			_object setpos (position player);
+		};
+
 		private _container = ["new", _object] call OO_CONTAINER;
 		MEMBER("prox_container", _container);
+
 		// print player listbox
 		private _container = ["new", player] call OO_CONTAINER;
 		MEMBER("cap_container", _container);
@@ -107,6 +112,15 @@ CLASS("oo_Vitems")
 		private _item = ["getItem", _index] call _scontainer;
 		["addItem", _item] call _dcontainer;
 		MEMBER("refresh", nil);
+	};
+
+	PUBLIC FUNCTION("", "check_prox_container") {
+			private _container = MEMBER("prox_container", nil);
+			private _size = "countSize" call _container;
+			private _type = typeOf ("getObject" call _container);
+			if ((_size isEqualTo 0) && (_type isEqualTo "Box_B_UAV_06_F")) then {
+				["delete", _container] call OO_CONTAINER;
+			};
 	};
 
 	PUBLIC FUNCTION("", "refresh_title") {
@@ -255,7 +269,9 @@ CLASS("oo_Vitems")
 	PUBLIC FUNCTION("control", "setOOP_Text_Inventory"){ MEMBER("OOP_Text_Inventory", _this); };
 	PUBLIC FUNCTION("control", "setOOP_Text_proximity"){ MEMBER("OOP_Text_proximity", _this); };
 	PUBLIC FUNCTION("display", "setDisplay"){ MEMBER("Display", _this); };
+
 	PUBLIC FUNCTION("", "deconstructor"){
+		MEMBER("check_prox_container", nil);
 		DELETE_UI_VARIABLE("MainLayer");
 		DELETE_UI_VARIABLE("OOP_Listbox_Capacities");
 		DELETE_UI_VARIABLE("OOP_Listbox_primaryweapon");
