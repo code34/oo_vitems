@@ -24,8 +24,5 @@
 	_inventory = ["new", player] call OO_CONTAINER;
 	["setProperties", [name player,5,10]] call _inventory;
 
-	player addEventHandler ["InventoryOpened", {
-		//player removeAllEventHandlers "InventoryOpened";
-		execVM "actions\listinventory.sqf";
-		true; // <-- inventory override
-	}];
+	player addEventHandler ["InventoryOpened", {execVM "actions\listinventory.sqf";true;}];
+	player addEventHandler ["InventoryClosed", {player addEventHandler ["InventoryOpened", {execVM "actions\listinventory.sqf";true;}];}];
