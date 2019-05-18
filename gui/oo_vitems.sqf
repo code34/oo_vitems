@@ -178,7 +178,8 @@ CLASS("oo_Vitems")
 		if(_index > -1) then {
 			private _content = ("getContent" call MEMBER("prox_container", nil)) select _index;
 			//"name", "description", "category", "price","weight", "owner", "life"
-			MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
+			//MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
+			MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["%1<br/>", _content select 1];
 		};
 	};
 
@@ -241,7 +242,8 @@ CLASS("oo_Vitems")
 		if(_index > -1) then {
 			private _content = ("getContent" call MEMBER("cap_container", nil)) select _index;
 			//"name", "description", "category", "price","weight", "owner", "life"
-			MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
+			MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["%1<br/>", _content select 1];
+			//MEMBER("OOP_Text_Description", nil) ctrlSetStructuredText parseText format ["Type: %1 Weight: %2Kg <br/>Durability: %3%<br/>Description: %4<br/>", _content select 2,_content select 3,_content select 4,_content select 1];
 		};
 	};
 
