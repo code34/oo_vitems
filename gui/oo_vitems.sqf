@@ -67,13 +67,14 @@ CLASS("oo_Vitems")
 		if (isNull _object) then { 
 			_object = "Box_B_UAV_06_F" createVehicle position player; 
 			_object setpos (position player);
+			_object setVariable ["temporary", true, true];
 		};
 
-		private _container = ["new", _object] call OO_CONTAINER;
+		private _container = ["new", netId _object] call OO_CONTAINER;
 		MEMBER("prox_container", _container);
 
 		// print player listbox
-		private _container = ["new", player] call OO_CONTAINER;
+		private _container = ["new", netId player] call OO_CONTAINER;
 		MEMBER("cap_container", _container);
 		MEMBER("refresh", nil);
 	};
@@ -124,8 +125,7 @@ CLASS("oo_Vitems")
 	PUBLIC FUNCTION("", "check_prox_container") {
 			private _container = MEMBER("prox_container", nil);
 			private _size = "countSize" call _container;
-			private _type = typeOf ("getObject" call _container);
-			if ((_size isEqualTo 0) && (_type isEqualTo "Box_B_UAV_06_F")) then {
+			if (_size isEqualTo 0) then {
 				["delete", _container] call OO_CONTAINER;
 			};
 	};
