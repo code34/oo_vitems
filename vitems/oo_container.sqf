@@ -22,11 +22,11 @@
 
 	CLASS("OO_CONTAINER")
 		PRIVATE VARIABLE("code","this");
-		PRIVATE VARIABLE("object","object");
+		PRIVATE VARIABLE("string","netId");
 
-		PUBLIC FUNCTION("object","constructor") { 
+		PUBLIC FUNCTION("string","constructor") { 
 			DEBUG(#, "OO_CONTAINER::constructor")
-			MEMBER("object", _this);
+			MEMBER("netId", _this);
 		};
 
 		// Return this object
@@ -36,15 +36,15 @@
 		};
 
 		// Return the 3d object container
-		PUBLIC FUNCTION("","getObject") {
-			DEBUG(#, "OO_CONTAINER::getObject")
-			MEMBER("object", nil);
+		PUBLIC FUNCTION("","getNetId") {
+			DEBUG(#, "OO_CONTAINER::getNetId")
+			MEMBER("netId", nil);
 		};
 
 		// Set the 3d object container
-		PUBLIC FUNCTION("object","setObject") {
-			DEBUG(#, "OO_CONTAINER::setObject")
-			MEMBER("object", _this);
+		PUBLIC FUNCTION("string","setNetId") {
+			DEBUG(#, "OO_CONTAINER::setNetId")
+			MEMBER("netId", _this);
 		};
 
 		// Return the name of container
@@ -92,7 +92,8 @@
 		// Count the occuped size in container
 		PUBLIC FUNCTION("","countSize") {
 			DEBUG(#, "OO_CONTAINER::countSize")
-			count(MEMBER("object", nil) getVariable["inventory", []]);
+			count(missionNamespace getVariable [format["inventory_%1", MEMBER("netId", nil)], []]);
+			//count(MEMBER("object", nil) getVariable["inventory", []]);
 		};
 
 		// Count the weight in container
@@ -101,29 +102,28 @@
 			private _weight = 0;
 			{
 				_weight = _weight + (_x select 3);
-			} forEach (MEMBER("object", nil) getVariable["inventory", []]);
+			} forEach (missionNamespace getVariable [format["inventory_%1", MEMBER("netId", nil)], []]);
 			_weight;
 		};
 
 		// Set the properties of container from an array
 		PUBLIC FUNCTION("array","setProperties") {
 			DEBUG(#, "OO_CONTAINER::setProperties")
-			MEMBER("object", nil) setVariable ["properties", _this, true];
+			//MEMBER("object", nil) setVariable ["properties", _this, true];
+			missionNamespace setVariable [format["properties_%1", MEMBER("netId", nil)], _this, true];
 		};
 
 		// Get the properties of container with an array
 		PUBLIC FUNCTION("","getProperties") {
 			DEBUG(#, "OO_CONTAINER::getProperties")
-			private _object = MEMBER("object", nil);
-			private _properties = _object getVariable ["properties",[]];
+			private _properties = (missionNamespace getVariable [format["properties_%1", MEMBER("netId", nil)], []]);
 			if (_properties isEqualTo []) then {
 				_stuff = "new" call OO_RANDOMSTUFF;
 				_properties = ["createProperties", _object] call _stuff;
 				MEMBER("setProperties", _properties);
-				if !((typeOf _object isEqualTo "Box_B_UAV_06_F") or (_object isKindOf "House_F")) then {
-					_content = ["getRandomContent", _object] call _stuff;
-					MEMBER("setContent", _content);
-				};
+				//if !((typeOf _object isEqualTo "Box_B_UAV_06_F") or (_object isKindOf "House_F")) then {
+				_content = ["getRandomContent", _object] call _stuff;
+				MEMBER("setContent", _content);
 			};
 			_properties;
 		};
@@ -148,19 +148,22 @@
 		// Return the content of container (items in array format)
 		PUBLIC FUNCTION("","getContent") {
 			DEBUG(#, "OO_CONTAINER::getContent")
-			MEMBER("object", nil) getVariable ["inventory", []];
+			//MEMBER("object", nil) getVariable ["inventory", []];
+			(missionNamespace getVariable [format["inventory_%1", MEMBER("netId", nil)], []]);
 		};
 
 		// Set the content of container (items in array format)
 		PUBLIC FUNCTION("array","setContent") {
 			DEBUG(#, "OO_CONTAINER::setContent")
-			MEMBER("object", nil) setVariable ["inventory", _this, true];
+			missionNamespace setVariable [format["inventory_%1", MEMBER("netId", nil)], _this, true];
+			//MEMBER("object", nil) setVariable ["inventory", _this, true];
 		};
 
 		// Add x elements to container (items in array format)
 		PUBLIC FUNCTION("array","addContent") {
 			DEBUG(#, "OO_CONTAINER::addContent")
-			private _inventory = MEMBER("object", nil) getVariable ["inventory", []];
+			//private _inventory = MEMBER("object", nil) getVariable ["inventory", []];
+			private _inventory = (missionNamespace getVariable [format["inventory_%1", MEMBER("netId", nil)], []]);
 			{
 				_inventory pushBack _x;
 			} foreach _this;
@@ -198,8 +201,7 @@
 
 		PUBLIC FUNCTION("","deconstructor") {
 			DEBUG(#, "OO_CONTAINER::deconstructor")
-			deleteVehicle MEMBER("object", nil);
 			DELETE_VARIABLE("this");
-			DELETE_VARIABLE("object");
+			DELETE_VARIABLE("netId");
 		};
 	ENDCLASS;
