@@ -21,8 +21,16 @@
 	call compile preprocessFileLineNumbers "gui\oo_vitems.sqf";
 	call compile preprocessFileLineNumbers "gui\oo_UI_loading.sqf";
 
-	_inventory = ["new", player] call OO_CONTAINER;
-	["setProperties", [name player,5,10]] call _inventory;
+/*	_inventory = ["new", netId player] call OO_CONTAINER;
+	["setProperties", [name player,5,10]] call _inventory;*/
 
 	player addEventHandler ["InventoryOpened", {execVM "actions\listinventory.sqf";true;}];
 	player addEventHandler ["InventoryClosed", {player addEventHandler ["InventoryOpened", {execVM "actions\listinventory.sqf";true;}];}];
+
+/*	sleep 2;
+
+	while { true } do {
+		_modelInfo = getModelInfo cursorObject;
+		hint format ["hello: %2", _modelInfo, netId cursorObject, typeOf cursorObject];
+		sleep 0.5;
+	};*/
